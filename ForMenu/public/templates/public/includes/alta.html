@@ -1,0 +1,54 @@
+{% load static %}
+<div class="lateralDiv  px-md-5 pt-md-5 p-3" id="altaDiv">
+    <span class="icon-cross" id="closeAlta"></span>
+        <div class="row m-0 pt-5 pb-5 registro">
+            <div class="col-md-12 p-0 border-bottom mb-4 pb-4">
+                <h1 class="mb-0">
+                    ¡Hola! Estás a un solo paso de hacer de tu 
+                    establecimiento un lugar más seguro contra el COVID-19
+                    usando la tecnología.
+                </h1>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <img src="{% static 'public/img/tecnologia.png'%}" alt="Registraté anda" class="w-100">
+                <a class="btn px-4 py-3 btn-dark mt-4 mb-5" role="button" href="{% url 'singup' %}" style="border-radius:30px">
+                    Registrar mi establecimiento gratis
+                </a>
+            </div>
+            
+            <div class="col-md-6 p-0">
+                <h2 class="">
+                    ¿Por qué usar 4Menu?
+                </h2>
+                <h3 class="mb-4">
+                    Con nuestro sistema de menús podrás subir a la nube todas
+                    las cartas que quieras y generar códigos QR, para que tus clientes
+                    accedan directamente a ellas.
+                </h3>
+                <h2 class="">   
+                    ¿En qué te beneficia?
+                </h2>
+                <h3 class="mb-4">
+                    Protegerás a tus clientes y empleados del COVID-19 evitando usar papel o
+                    plástico, además solo tardarás 10 minutos y ¡Es totalmente gratis!
+                </h3>
+
+                <h2 class="">   
+                    ¿Cómo lo uso?
+                </h2>
+                <h3 class="mb-4">
+                    Crea una cuenta para registrar tu restaurante, sube tu menú y automaticamente se genererá un código QR...
+                    imprimelo y dile a tus clientes que lo escaneen con su teléfono móvil.
+                    Si no tienen escaner pueden usar el buscador de la web y encontrarte por tu nombre o ciudad.
+                </h3>
+            </div>
+
+            <div class="col-12 mt-4 pt-4 border-top p-0">
+                <h1>Venzamos entre todos al COVID-19 aportando cada uno un granito de arena</h1>
+
+                <img src="{% static 'public/img/juntos.png'%}" alt="Registraté anda" class="w-100">
+
+            </div>
+        </div>
+</div>

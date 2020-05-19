@@ -1,0 +1,715 @@
+/*********++++++++++++++++
+BASE 
+*************************/
+
+*{
+   	font-family: VollKorn,
+   	sans-serif;
+}
+
+.movil {
+    display: none
+}
+
+.ordenador {
+    display: block
+}
+
+.enlace {
+    color: inherit;
+}
+
+.enlace:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.shadowHover:hover {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;
+    cursor: pointer;
+}
+
+input:focus,
+button:focus,
+textarea:focus,
+select:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
+
+@media (max-width: 767px) {
+    .movil {
+        display: block
+    }
+
+    .ordenador {
+        display: none
+    }
+}
+
+
+/*********++++++++++++++++
+NAVEGADOR
+*************************/
+
+.navegador{
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    z-index: 999;
+    background-color: #f4f7f8;
+}
+
+.navigation{
+    float: right;
+    height: 100%;
+    width: auto;
+}
+
+.navigation a.active{
+    background-color: #000;
+    border-color: #000;
+    border-radius: 30px;
+    color: #fff!important;
+}
+
+.navigation a.active:hover {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;
+    cursor: pointer;
+    
+}
+
+.navigation a {
+    background-color: transparent;
+    border-color: #000;
+    border-radius: 30px;
+    color: #000 !important;
+}
+
+.navigation a:hover {
+    background-color: #000;
+    border-color: #000;
+    border-radius: 30px;
+    color: #fff !important;
+    cursor: pointer;
+}
+
+.logoNav, .logoNav img{
+    height: 100%;
+    float: left;
+    width: auto
+}
+
+
+
+.menuPalos {
+    width: 25px;
+    height: 100%;
+    padding: 5px 0;
+    float: right;
+    cursor: pointer;
+    margin-right: 0px;
+    transition: .5s;
+}
+
+.menuPalos.activePadding {
+    padding: 5px 0;
+    transition: .5s;
+}
+
+.menuPalo1 {
+    width: 25px;
+    height: 2px;
+    background: #fff;
+    margin-top: 4px;
+    float: right;
+    transition: all 0.3s;
+    position: absolute;
+    border-radius: 2px;
+}
+
+.menuPalo2 {
+    width: 25px;
+    height: 2px;
+    background: #fff;
+    margin-top: 14px;
+    transition: all 0.3s;
+    position: absolute;
+    border-radius: 2px;
+}
+
+.menuPalo3 {
+    width: 25px;
+    height: 2px;
+    background: #fff;
+    margin-top: 24px;
+    float: right;
+    transition: all 0.3s;
+    position: absolute;
+    border-radius: 2px;
+}
+
+.menuPalo1.active {
+    width: 25px;
+    transform: rotate(45deg);
+    transition: all 0.3s;
+    position: absolute;
+    margin-top: 15px;
+}
+
+.menuPalo2.active {
+    width: 25px !important;
+    transform: rotate(-45deg);
+    transition: all 0.3s;
+    position: absolute;
+    margin-top: 15px;
+}
+
+.menuPalo3.active {
+    width: 25px !important;
+    transform: rotate(-45deg);
+    transition: all 0.3s;
+    position: absolute;
+    margin-top: 15px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: calc(100vh);
+    top: 0px;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 998;
+    opacity: 1;
+}
+
+.overlay.active{
+    display: block;
+}
+
+.overlay2 {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: calc(100vh);
+    top: 0px;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    opacity: 1;
+}
+
+.overlay2.active {
+    display: block;
+}
+
+
+@media (max-width: 767px) {
+    .navegador{
+        background-color:#000
+    }
+    .navigation {
+        position: fixed;
+        height: 0;
+        width: 100%;
+        overflow: hidden;
+        top: 70px;
+        left: 0;
+        z-index: 999;
+        background-color: #000;
+        padding:0;
+        transition: all .5s;
+    }
+    .navigation.active {
+        height: 130px;
+        transition: all .5s;
+    }
+
+    .navigation a.active {
+        background-color: #fff;
+        border-color: #fff;
+        border-radius: 30px;
+        color: #000 !important;
+    }
+
+    .navigation a {
+        background-color: transparent;
+        border-color: #fff;
+        border-radius: 30px;
+        color: #fff !important;
+        font-size: 12px;
+        padding: 10px 25px;
+        margin: 15px 15px 0 15px;
+        width: calc(100% - 30px);
+    }
+
+    .navigation a:hover {
+        background-color: #fff;
+        border-color: #fff;
+        border-radius: 30px;
+        color: #000 !important;
+        cursor: pointer;
+    }
+
+}
+
+/*********++++++++++++++++
+BUSCADOR INICIO
+*************************/
+
+.buscadorDiv{
+    height: auto;
+    width: 320px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-top: calc(70px + 5em);
+    margin-left: 5em;
+    position: relative;
+    z-index: 990;
+    float: left;
+}
+
+.tituloBuscador{
+    font-family: Cormorant Garamond,
+    sans-serif;
+    font-size: 45px;
+    font-weight: 900;
+    margin-bottom: 0;
+    line-height: 35px;
+}
+
+.buscadorDiv label{
+    font-family: Cormorant Garamond,
+    sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 0;
+}
+
+
+.buscadorDiv small {
+    transition: .3s;
+}
+
+.buscadorDiv small:hover{
+    cursor: pointer;
+    color: #007bff;
+    transition: .3s;
+    font-size: 14px
+}
+
+.disenoDiv{
+    width: calc(100% - 320px - 10em);
+    float: left;
+    margin-left: 3em;
+    margin-top: calc(70px + 5em);
+}
+
+.disenoDiv h1{
+    font-family: Cormorant Garamond,
+    sans-serif;
+    font-size: 5.5vw;
+    font-weight: 600;
+    margin-bottom: 0;
+    line-height: 5.5vw;
+}
+
+
+@media (max-width: 767px) {
+    .buscadorDiv {
+        height: auto;
+        width: calc(100% - 2em);
+        background-color: #fff;
+        border-radius: 10px;
+        margin: 85px 1em 0 1rem;
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+
+    .disenoDiv {
+        width: calc(100% - 4em);
+        float: left;
+        margin: 3em 2em;
+    }
+
+    .disenoDiv h1 {
+        font-family: Cormorant Garamond,
+            sans-serif;
+        font-size: 45px;
+        font-weight: 600;
+        margin-bottom: 0;
+        line-height: 50px;
+    }
+
+}
+
+
+
+
+/*********++++++++++++++++
+LOGIN
+*************************/
+
+
+
+.lateralDiv{
+    max-width: 900px;
+    width: 100%;
+    right: -100vw;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    transition: .5s;
+    background-color: #fff;
+    z-index: 1001;
+    overflow-y: scroll;
+}
+
+.lateralDiv.active{
+    right: 0;
+    transition: .5s;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
+}
+
+
+@media (max-width: 767px) {
+    .lateralDiv {
+        width: 100%;
+    }
+
+    .lateralDiv.active {
+        box-shadow: 0;
+    }
+
+}
+
+
+/*********++++++++++++++++
+BUSCADOR
+*************************/
+
+
+
+.formularioContacto {
+    background: #fff;
+    background-clip: padding-box;
+    border: 1px solid #e7e7e7;
+    border-radius: 4px;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #19110b;
+    height: 3rem;
+    text-align: left;
+    font-weight: 400;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 2;
+    letter-spacing: .4px;
+    transition: border .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    padding: 0 1rem;
+    line-height: 3rem;
+    width: 100%;
+}
+
+
+.busquedaMotorCampo {
+    width: calc(50% - 60px - 10px);
+    margin-right: 10px;
+    height: 56px !important;
+    padding: 10px 1rem;
+}
+
+.tituloResultado{
+    font-family: Cormorant Garamond,
+    sans-serif;
+    font-size:40px;
+    font-weight: 600;
+    margin-bottom: 0;
+    line-height: 50px;
+}
+
+.imagenBusqueda{
+    width: 300px;
+    height: 200px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    float: left;
+}
+
+.datosBusqueda {
+    width: calc(100% - 300px);
+    height: auto;
+    float: left;
+}
+
+.localizacionBusqueda{
+    color: rgb(113, 113, 113);
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.nombreBusqueda {
+    font-family: Cormorant Garamond,
+        sans-serif;
+    font-size: 35px;
+    font-weight: 600;
+    margin-bottom: 0;
+    line-height: 35px;
+    color: #000;
+}
+
+.cantidadBusqueda{
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+    line-height: 14px;
+    color: #c0c0c0;
+}
+
+.btn-secondary{
+    background-color: #d7d7d7;
+    border-color: #d7d7d7;
+}
+
+@media (max-width: 767px) {
+    .busquedaMotorCampo {
+        width: calc(50% - 27px - 5px);
+        margin-right: 5px;
+        height: 40px !important;
+    }
+    .tituloResultado {
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    .imagenBusqueda {
+        width: 100%;
+        height: 66vw;
+    }
+
+    .datosBusqueda {
+        width: calc(100%);
+    }
+}
+
+
+
+/*********++++++++++++++++
+LOCAL
+*************************/
+
+
+.portadaLocal {
+    width: 100%;
+    height: 200px;
+    margin-top: 60px;
+    position: relative;
+}
+
+.tituloLocal {
+    font-size: 50px;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.tituloMenuLocal{
+    font-family: Cormorant Garamond,
+    sans-serif;
+    font-size: 35px;
+    font-weight: 600;
+    margin-bottom: 0;
+    line-height: 35px;
+    color: #000;
+}
+
+.tituloSecundarioLocal {
+    font-family: Cormorant Garamond,
+        sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 0;
+    line-height: 25px;
+    color: #000;
+}
+
+.divMenu{
+    border-radius: 30px;
+    height: 56px;
+}
+
+.tituloMenu{
+    font-family: Cormorant Garamond,
+    sans-serif;
+    width: calc(100% - 70px);
+    float: left;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.botonesMenu2{
+    width: 70px;
+    float: left;
+    height: 100%;
+    background: #000;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    text-align: center;
+    color: #fff!important;
+    font-size: 25px;
+    padding: 13px;
+}
+
+@media (max-width: 767px) {
+    .portadaLocal {
+        width: 100%;
+        height: 120px;
+        margin-top: 50px;
+    }
+
+    .tituloLocal {
+        font-size: 25px;
+        color: #fff;
+        position: absolute;
+        bottom: 0;
+        font-weight: 600;
+        line-height: 1;
+    }
+
+    .tituloMenuLocal {
+        font-size: 25px;
+    }
+}
+
+
+
+/*********++++++++++++++++
+ALTA
+*************************/
+
+
+
+.registro h1 {
+    font-family: Cormorant Garamond,
+        sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 0;
+    line-height: 35px;
+}
+
+
+.registro h2 {
+    font-family: Cormorant Garamond,
+        sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 0;
+    line-height: 35px;
+}
+
+.registro h3 {
+    font-family: Cormorant Garamond,
+        sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 0;
+    line-height: 25px;
+}
+
+
+@media (max-width: 767px) {
+    .registro h1 {
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    .registro h2 {
+        font-size: 20px;
+        line-height: 25px;
+    }
+
+    .registro h3 {
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+}
+
+
+
+/*********++++++++++++++++
+MANAGER
+*************************/
+
+.botonesMenu1 {
+    width: 48px;
+    float: left;
+    height: 48px;
+    background: #000;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff !important;
+    font-size: 16px;
+    padding: 15px;
+    margin: 4px 4px 4px 0;
+}
+
+
+.tituloMenu2 {
+    font-family: Cormorant Garamond,
+        sans-serif;
+    width: calc(100% - 156px);
+    float: left;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+@media (max-width: 767px) {
+
+    .botonesMenu1 {
+        width: 38px;
+        float: left;
+        height: 38px;
+        background: #000;
+        border-radius: 50%;
+        text-align: center;
+        color: #fff !important;
+        font-size: 12px;
+        padding: 12px;
+        margin: 9px 4px 9px 0;
+    }
+
+
+    .tituloMenu2 {
+        font-family: Cormorant Garamond,
+            sans-serif;
+        width: calc(100% - 126px);
+        float: left;
+        font-weight: 600;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+
+}

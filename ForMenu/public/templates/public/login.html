@@ -1,0 +1,51 @@
+{% extends "public/base.html" %}
+{% load static %}
+
+{% block title %}
+    Inicia sesión en tu cuenta de manager
+{% endblock %}
+
+{% block content %} 
+   	<div class="bg-white" style="width: 100%; margin-top: 70px">
+		<div class="contenedor">
+			<form method="post" action="{% url 'login' %}">{% csrf_token %}
+                <div class="row m-0 py-md-5 p-3">
+                    <div class="col-md-8 p-0 offset-md-2">
+                        <div class="row m-0">
+                            <div class="col-md-12 p-0">
+                                <p class="tituloResultado mb-3">
+                                    Inicia Sesión
+                                </p>
+                            </div>
+
+                            {% if form.errors %}
+                                <div class="alert alert-danger rounded-0" role="alert">
+                                    Por favor, introduzca un nombre de usuario y clave correctos. Observe que ambos campos pueden ser sensibles a mayúsculas.
+                                </div>
+                            {% endif %}
+
+                            <div class="col-md-4 rounded  p-0 mb-2 mb-md-0 ">
+                                <input type="text" name="username" required placeholder="Nombre de usuario" class="form-control py-3 h-100">
+                            </div>
+                            <div class="col-md-5 rounded px-0 px-md-3 mb-2 mb-md-0">
+                                <input type="password" name="password" required placeholder="Contraseña" class="form-control py-3 h-100" >
+                            </div>
+                            <div class="col-md-3 rounded p-0">
+                                <button class="btn btn-sm btn-block btn-primary py-3">Iniciar sesión</button>
+                            </div>
+                            <div class="col-12 border-top mt-3 pt-2 px-0">
+                                <small>
+                                    <a href="#">¿Has olvidado tu contraseña?</a>
+                                </small> 
+                            </div>
+                            <div class="col-12 px-md-5 px-0 pt-5">
+                                <img src="{% static 'public/img/login.png'%}" alt="Logeate anda" class="w-100">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </form>
+		</div>
+	</div>
+{% endblock %}

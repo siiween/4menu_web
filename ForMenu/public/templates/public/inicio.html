@@ -1,0 +1,94 @@
+{% extends "public/base.html" %}
+{% load static %}
+
+{% block title %}
+4Menu, la forma más fácil de compartir tu menú de forma segura y rápida
+{% endblock %}
+
+{% block content %} 
+
+<style>
+    body{
+        background-color: #f4f7f8
+    }
+</style>
+<div class="row m-0">
+    <div class="col-12 p-0">
+        <div class="buscadorDiv shadow">
+           <form action="{% url 'buscar' %}">
+                <div class="row m-0">
+                    <div class="col-12 p-4 mb-4 border-bottom">
+                        <p class="tituloBuscador">Buscar un restaurante</p>
+                    </div>
+                    <div class="col-12 px-4">
+                        <label for="n">Nombre</label>
+                        <input type="text" name="n" required class="form-control">
+                    </div>
+                    <div class="col-12 px-4 mt-3">
+                        <label for="c">Ciudad</label>
+                        <input type="text" name="c" class="form-control">
+                    </div>
+                    <div class="col-12 px-4 pt-3 pb-4 text-right">
+                        <button class="btn btn-block px-4 btn-primary" type="submit" style="border-radius:30px">
+                            Encontrar
+                        </button>
+                    </div>
+                    <div class="col-12 p-4 bg-light text-center" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px">
+                        <small id="activeAlta2">
+                            Registra tu restaurante <b>¡Es gratis!</b> 
+                        </small> 
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="disenoDiv">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-interval="7000">
+                        <div class="row m-0">
+                            <div class="col-lg-4 p-0">
+                                <h1> La mejor forma de compartir tu menú gratis</h1>
+                            </div>
+                            <div class="col-lg-8 mt-lg-0 mt-5">
+                                <img class="w-100 " src="{% static 'public/img/portada/1.png'%}" alt="Chef molón">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-interval="7000">
+                          <div class="row m-0">
+                            <div class="col-lg-4 p-0">
+                                <h1>Luchemos juntos contra el COVID-19 </h1>
+                            </div>
+                            <div class="col-lg-8 mt-lg-0 mt-5">
+                                <img class="w-100 " src="{% static 'public/img/portada/6.png'%}" alt="Chef molón">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-interval="7000">
+                          <div class="row m-0">
+                            <div class="col-lg-4 p-0">
+                                <h1>Registra tu local totalmente gratis </h1>
+                            </div>
+                            <div class="col-lg-8 mt-lg-0 mt-5">
+                                <img class="w-100 " src="{% static 'public/img/portada/3.png'%}" alt="Chef molón">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-interval="7000">
+                          <div class="row m-0">
+                            <div class="col-lg-4 p-0">
+                                <h1>Encuentra y baja cualquier menú </h1>
+                            </div>
+                            <div class="col-lg-8 mt-lg-0 mt-5">
+                                <img class="w-100 " src="{% static 'public/img/portada/4.png'%}" alt="Chef molón">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

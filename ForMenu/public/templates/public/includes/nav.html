@@ -1,0 +1,25 @@
+{%load static%}
+<nav class="navegador">
+    <div class="logoNav py-1">
+        <a href="{% url 'inicio' %}" class="enlace">
+            <img src="{% static 'public/img/logo4menu.png' %}" alt="4Menu" class="ordenador">
+            <img src="{% static 'public/img/logo4menuBlanco.png' %}" alt="4Menu" class="movil">
+        </a> 
+    </div>
+    <div class="menuPalos movil" id="activeMenu">
+        <div class="menuPalo1"></div>
+        <div class="menuPalo2"></div>
+        <div class="menuPalo3"></div>
+    </div>
+    <div class="navigation">
+        {% if user.is_authenticated %}
+            <a class="btn px-4" role="button"  id="activeLogin" checked href="{% url 'logout'%}"> Cerrar sesión </a>
+            <a class="btn px-4 active" role="button"  id="activeAyuda" checked> Ayuda </a>
+        {% else %}
+            <a class="btn px-4" role="button"  id="activeLogin" checked> Iniciar sesión </a>
+            <hr class="movil my-0 border-0">
+            <a class="btn active px-4" role="button" id="activeAlta"> Darse de alta </a>
+        {% endif %}
+    </div>
+</nav>
+ 

@@ -1,0 +1,53 @@
+{% extends "public/base.html" %}
+{% load static %}
+
+{% block title %}
+    Buscar {{nombre}} {% if ciudad %} en {{ciudad}} {% endif %}
+{% endblock %}
+
+{% block content %} 
+   	<div class="bg-white" style="width: 100%; margin-top: 70px">
+		<div class="contenedor">
+			<div class="row m-0 px-3">
+				<div class="col-12 py-3 py-md-4 px-0">
+					<form action="{% url 'buscar' %}">
+						<input value="{{nombre}}" type="text" name='n' required class="formularioContacto busquedaMotorCampo" placeholder="Nombre">
+                        <input value="{{ciudad}}" type="text" name='c' required class="formularioContacto busquedaMotorCampo" placeholder="Ciudad">
+						<button class="btn-primary btn border-0 rounded float-right px-md-5 py-md-3 px-3 py-2" type="submit"><span class="icon-search"></span></button>
+					</form>
+				</div>
+
+                <div class="col-12 px-0 mt-md-4  mt-3 border-bottom pb-3">
+                    <p class="tituloResultado">
+                        Resultados de la búsqueda
+                    </p>
+                </div>
+
+
+                <div class="col-md-8 px-0 mt-4">
+                    <a href="{% url 'local' %}" class="enlace">
+                        <div class="imagenBusqueda"  style="background: url('{%static 'public/img/restaurante.jpg'%}') no-repeat;background-size: cover; background-position: center !important;"></div>
+                        <div class="datosBusqueda pl-md-4">
+                            <div class="localizacionBusqueda mt-md-0 mt-3 mb-1">
+                                Albatera, España
+                            </div>
+                            <div class="nombreBusqueda mb-2">
+                                Pizzeria Capichi
+                            </div>
+                            <div class="cantidadBusqueda mb-2">4 menús</div>
+                            <div class="descripcionBusqueda">
+                                esta es la descripcion de la pizzeria Capichi
+                                una pizzeria de albatera muy chupiflower que hacer
+                                pizzas y demas mierdas italianas xd.
+                            </div>
+                            <a href="#" class="btn btn-sm btn-secondary mt-2">
+                                <span class="icon-star-full"></span>
+                            </a>
+                        </div>
+                    </a>
+                </div>
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

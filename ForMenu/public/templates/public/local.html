@@ -1,0 +1,108 @@
+{% extends "public/base.html" %}
+{% load static %}
+
+{% block title %}
+    Menús de pizzeria capichi
+{% endblock %}
+
+{% block content %} 
+
+
+<style>
+    body{
+        background-color: #f4f7f8
+    }
+</style>
+
+
+   	<div style="width: 100%; margin-top: 70px">
+        <div class="portadaLocal" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.5) 100%), url({%static 'public/img/restaurante.jpg'%}) no-repeat;background-size: cover; background-position: center !important;">
+            <div class="contenedor p-3">
+                <p class="tituloLocal">
+                    Pizzeria Capichi
+                </p>
+            </div>
+        </div> 
+
+		<div class="contenedor mt-3 mt-md-4 mb-5">
+            <div class="row m-0 px-3">
+
+                <div class="col-md-8 p-0 pr-md-4 mb-3">
+                    <div class="row m-0 bg-white shadow-sm rounded p-md-4 p-3">
+                        <div class="col-12 px-0 mb-3 border-bottom pb-3">
+                            <div class="tituloMenuLocal">
+                                Menús disponibles
+                            </div>   
+                        </div>
+
+                        <div class="col-12 p-0 mt-2 mb-1 bg-light  divMenu shadowHover">
+                            <div class="tituloMenu p-3">Menú principal de la pizzeria pa que lo disfrutes crack</div>
+                            <div class="botonesMenu ">
+                                <span class="icon-cloud-download"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 p-0 mt-2 mb-1 bg-light  divMenu shadowHover">
+                            <div class="tituloMenu p-3">Menú de postres </div>
+                            <div class="botonesMenu ">
+                                <span class="icon-cloud-download"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 p-0 mt-2 mb-1 bg-light divMenu shadowHover">
+                            <div class="tituloMenu p-3">Menú de vinos</div>
+                            <div class="botonesMenu ">
+                                <span class="icon-cloud-download"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-4 p-0">
+                    <div class="row m-0">
+
+                        <div class="col-12 p-0  bg-white shadow-sm rounded p-4 mb-md-4 mb-3">
+                            <div class="tituloSecundarioLocal mb-3 pb-3 border-bottom">
+                                Contacto
+                            </div> 
+                            <a href="#" class="enlace">Teléfono: 622759791</a> <br>
+                            <a href="#" class="enlace">Email: holi@holi.es</a> 
+                        </div>
+
+                        <div class="col-12 p-0  bg-white shadow-sm rounded  p-4 mb-md-4 mb-3">
+                            <div class="tituloSecundarioLocal mb-3 pb-3 border-bottom">
+                                Dirección
+                            </div> 
+                            <p class="mb-0">
+                                Calle La Mancha N29 1A <br>
+                                Albatera, Alicante 
+                            </p>
+                        </div>
+
+                        <div class="col-12 p-0  bg-white  shadow-sm rounded p-4">
+                            <div class="tituloSecundarioLocal mb-3 pb-3 border-bottom">
+                                Horario
+                            </div> 
+                            <p class="mb-0">
+                                Lunes: <b class="text-danger">cerrado</b> <br>
+                                Martes: <b>10.00 - 23.00</b> <br>
+                                Miercoles: <b>10.00 - 23.00</b> <br>
+                                Jueves:  <b class="text-danger">cerrado</b> <br>
+                                Viernes: <b>10.00 - 00.00</b> <br>
+                                Sábado: <b>10.00 - 01.30</b> <br>
+                                Domingo: <b>10.00 - 23.00</b> <br>
+                            </p>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+		</div>
+
+	</div>
+{% endblock %}
