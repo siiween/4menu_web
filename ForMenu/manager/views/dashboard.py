@@ -44,7 +44,8 @@ def crearMenu(request):
             menu.save()
             messages.success(request, f'¡Enhorabuena! Tu menú ha sido creado correctamente')
         else:
-            messages.error(request, f'Ha habido un error en la creación de tu menú')
+            messages.error(
+                request, f'Ha habido un error, prueba de nuevo')
 
     return redirect('dashboard-manager')
 
@@ -57,7 +58,8 @@ def eliminarMenu(request, id):
         if menu.delete():
             messages.success(request, f'Menú eliminado correctamente')
         else:
-            messages.error(request, f'Ha habido un error eliminando tu menú')
+            messages.error(
+                request, f'Ha habido un error, prueba de nuevo')
     else:
         messages.error(request, f'No puedes eliminar menús que no son tuyos')
 
@@ -71,7 +73,6 @@ def modificarImagen(request):
         restaurante.imagen = request.FILES['imagen']
         restaurante.save()
         messages.success(request, f'Imagen modificada correctamente')
-
     return redirect('dashboard-manager')
 
 
@@ -88,7 +89,8 @@ def modificarDatosPublicos(request):
             r_form.save()
             messages.success(request, f'¡Tus datos públicos han sido actualizado!')
         else:
-            messages.error(request, f'Ha habido un error en la modificación de tus datos')
+            messages.error(
+                request, f'Ha habido un error, prueba de nuevo')
     return redirect('dashboard-manager')
 
 
@@ -105,7 +107,7 @@ def modificarDireccion(request):
                 request, f'¡Tu dirección ha sido modificada!')
         else:
             messages.error(
-                request, f'Ha habido un error en la modificación de tu dirección')
+                request, f'Ha habido un error, prueba de nuevo')
     return redirect('dashboard-manager')
 
 
@@ -115,15 +117,12 @@ def modificarDireccion(request):
 def modificarHorario(request):
     if request.method == 'POST':
         horario = Horario.objects.get(user=request.user)
-        restaurante = Restaurante.objects.get(user=request.user)
 
-        h_form = horarioForm(request.POST, instance=horario)
-        d_form = direccionForm(request.POST, instance=restaurante)
+        form = horarioForm(request.POST, instance=horario)
 
-        if h_form.is_valid() and d_form.is_valid():
-            h_form.save()
-            d_form.save()
-            messages.success(request, f'¡Tus cuenta completado!')
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'¡Tu horario ha sido modificado!')
         else:
             messages.error(
                 request, f'Ha habido un error, prueba de nuevo')
@@ -146,8 +145,8 @@ def completarPerfil(request):
             restaurante.is_complete = True
             restaurante.save()
 
-            messages.success(request, f'¡tus datos públicos han sido actualizado!')
+            messages.success(request, f'¡tu cuenta ha sido completada!')
         else:
             messages.error(
-                request, f'Ha habido un error en la modificación de tus datos')
+                request, f'No se ha podido completar tu cuenta')
     return redirect('dashboard-manager')
