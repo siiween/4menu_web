@@ -22,8 +22,11 @@
                     <a href="#">¿Has olvidado tu contraseña?</a>
                 </small> 
             </div>
-            <div class="col-12 px-md-5 px-0 pt-5">
+            <div class="col-12 px-md-5 px-0 pt-5 text-center">
                 <img src="{% static 'public/img/login.png'%}" alt="Logeate anda" class="w-100">
+                <a class="btn px-4 py-3 btn-dark mt-4 mb-5" role="button" href="{% url 'singup' %}" style="border-radius:30px">
+                    Registrar mi establecimiento gratis
+                </a>
             </div>
         </div>
     </form>

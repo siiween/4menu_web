@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Inicia sesión en tu cuenta de manager
+    Manager de 4Menu
 {% endblock %}
 
 {% block content %} 
@@ -13,96 +13,293 @@
 </style>
 
    	<div style="width: 100%; margin-top: 70px">
-        <div class="portadaLocal" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.7) 100%), url({%static 'public/img/restaurante.jpg'%}) no-repeat;background-size: cover; background-position: center !important;">
+        {% if restaurante.imagen%} 
+            <div class="portadaLocal" id="bluh"  style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.7) 100%), url({{restaurante.imagen.url}}) no-repeat;background-size: cover; background-position: center !important;">
+        {% else %}
+            <div class="portadaLocal" id="bluh"  style="background: #424242"> 
+            <div class="alert alert-warning alertaImagen mb-0" role="alert">
+                😭 Vaya, al parecer no tienes una imagen de perfil, deberías subir una para que tus clientes te reconozcan mejor.
+            </div>            
+        {% endif %}
+                
+        <form method="post" enctype="multipart/form-data" action="{% url 'modificarImagen' %}">{% csrf_token %}
             <div class="contenedor p-3">
                 <p class="tituloLocal">
-                    <a class="btn btn-primary mr-2" role="button" href="#" style="border-radius:50%; height: 40px; width: 40px; padding: 8px 0;margin-top: -10px;">
-                        <span class="icon-pencil2"></span>    
-                    </a>
-                    Pizzeria Capichi
+                    {{restaurante.nombre}}
                 </p>
+                <label class="inputCambiarFondo">
+                    <input  type="file" name="imagen" required accept="image/*" class="clearablefileinput shadowHover" id="id_imagen" value="{% if restaurante.imagen%} {{restaurante.imagen}} {% endif %} ">
+                    <a class="btn btn-primary mr-2 shadowHover" role="button" href="#">
+                        <span class="icon-camera"></span>
+                    </a>
+                </label>
+                <button class="btn btn-primary botonNuevaImagen shadow py-2 px-3" type="submit">Guardar cambios</button>
             </div>
+        </form>
         </div> 
 
-		<div class="contenedor px-3 py-md-4 py-3">
 
+
+		<div class="contenedor px-3 pb-5">
             <div class="row m-0">
-                <div class="col-md-8 p-0 pr-md-4 mb-3">
-                    <div class="row m-0 bg-white shadow-sm rounded p-md-4 p-3">
-                        <div class="col-12 px-0 mb-3 border-bottom pb-3">
-                            <div class="tituloMenuLocal">
-                                Menús disponibles
-                            </div>   
-                        </div>
-                        <div class="col-12 p-0 mt-2 mb-1 bg-light  divMenu shadowHover">
-                            <div class="tituloMenu2 p-3">Menú principal de la pizzeria pa que lo disfrutes crack</div>
-                            <a class="botonesMenu1 bg-primary">
-                                <span class="icon-pencil2"></span>    
-                            </a>
-                            <a class="botonesMenu1 bg-success">
-                                <span class="icon-qrcode"></span>
-                            </a>
-                            <a class="botonesMenu1 ">
-                                <span class="icon-cloud-download"></span>
-                            </a>
-                        </div>
-
-                        <div class="col-12 p-0 mt-3 pt-3 border-top text-center">
-                            <a class="btn btn-sm px-4 py-3 btn-transparent" role="button" href="#" style="border-radius:30px">
-                                <span class="icon-plus mr-2"></span> Añadir nuevo menú
-                            </a>
-                        </div>
-
-                    </div>
+                <div class="col-12 p-0">
+                    {% if restaurante.is_complete %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert mb-0 mt-4 alert-{{ message.tags }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endif %}
                 </div>
+
+
+                <div class="col-md-8 p-0 pr-md-4">
+                    <div class="row m-0 ">
+                        <div class="col-12 bg-white shadow-sm rounded p-md-4 p-3 mt-4">
+                            <div class="row m-0">
+                                <div class="col-12 px-0 mb-3 border-bottom pb-3">
+                                    <div class="tituloMenuLocal">
+                                        Menús disponibles
+                                    </div>   
+                                </div>
+                                {% for menu in menus %}
+                                    <div class="col-12 p-0 mt-2 mb-1 bg-light  divMenu shadowHover">
+                                        <div class="tituloMenu2 p-3">{{menu.nombre}}</div>
+                                        <a class="botonesMenu1 bg-danger" data-toggle="modal" data-target="#eliminar_{{menu.id}}">
+                                            <span class="icon-bin2"></span>
+                                        </a>
+                                        <a class="botonesMenu1 bg-primary enlace" href="{{menu.qr.url}}" download="">
+                                            <span class="icon-qrcode"></span>
+                                        </a>
+                                        <a class="botonesMenu1 enlace" href="{{menu.pdf.url}}" download="">
+                                            <span class="icon-cloud-download"></span>
+                                        </a>
+                                    </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="eliminar_{{menu.id}}" tabindex="-1" role="dialog" aria-labelledby="eliminar_{{menu.id}}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content p-5">  
+                                                    <div class="row m-0">
+                                                        <div class="col-12 p-0 text-center">
+                                                            ¿Estás seguro de eliminar este menú?
+                                                        </div>
+                                                        <div class="col-12 p-0 text-center mt-3">
+                                                            <button type="button" class="btn btn-sm btn-success" data-dismiss="modal" aria-label="Close">
+                                                                Cancelar
+                                                            </button>
+                                                            <a role="button" href="{% url 'eliminarMenu' menu.id %}" class="btn btn-sm btn-danger">
+                                                                Eliminar
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% empty %}
+                                    <div class="col-md-6 offset-md-3 p-0 text-center">
+                                        <p> ¿A qué esperas?, sube tu menú y compartelo con los códigos QR. Luchemos contra el COVID-19</p>
+                                        <img src="{% static 'public/img/espera.png'%}" alt="No seas vagooo" class="w-100">
+                                    </div>
+                                {% endfor %}
+
+
+                                <div class="col-12 p-0 mt-3 pt-3 border-top text-center">
+                                    <a class="btn btn-sm px-4 py-3 btn-transparent shadowHover" role="button" id="activeCrearMenu" style="border-radius:30px">
+                                        <span class="icon-plus mr-2"></span> Añadir nuevo menú
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 p-0 mt-4">
+                            <form method="post" action="{% url 'modificarDatosPublicos' %}">{% csrf_token %}
+                                <div class="row m-0 ">
+                                    <div class="col-12 p-0  bg-white shadow-sm rounded p-4">
+                                        <div class="tituloSecundarioLocal mb-3 pb-3 border-bottom">
+                                            Datos
+                                        </div> 
+                                        <small class="text-muted">Nombre de usuario</small>
+                                        <input type="text" class="inputLocal mb-3" required name="username" value="{{ user.username }}">
+                                        <small class="text-muted">Nombre del local</small>
+                                        <input type="text" class="inputLocal mb-3" required name="nombre" value="{{ restaurante.nombre }}">
+                                        <small class="text-muted">Teléfono</small>
+                                        <input type="number" class="inputLocal mb-3" required name="telefono" value="{{ restaurante.telefono }}">
+                                        <small class="text-muted">Correo electrónico</small>
+                                        <input type="email" class="inputLocal" required name="email" value="{{ user.email }}">
+                                        <button class="btn btn-sm btn-primary py-2 px-3 mt-3 float-right" style="border-radius: 25px" type="submit">Guardar cambios</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6 p-0 pl-md-4 mt-4">
+                            <form method="post" action="{% url 'modificarDireccion' %}">{% csrf_token %}
+                                <div class="row m-0 ">
+                                    <div class="col-12 p-0  bg-white shadow-sm rounded  p-4 ">
+                                        <div class="tituloSecundarioLocal mb-3 pb-3 border-bottom">
+                                            Dirección
+                                        </div> 
+                                        <p class="mb-0">
+                                            <small class="text-muted">Dirección</small>
+                                            <input type="text" class="inputLocal mb-3" required name="direccion" value="{{ restaurante.direccion }}">
+                                            <small class="text-muted">Ciudad</small>
+                                            <input type="text" class="inputLocal mb-3" required name="ciudad" value="{{ restaurante.ciudad }}">
+                                             <small class="text-muted">Provincia</small>
+                                            <input type="text" class="inputLocal mb-3" required name="provincia" value="{{ restaurante.provincia }}">
+                                            <small class="text-muted">Pais</small>
+                                            <input type="text" class="inputLocal" required name="pais" value="{{ restaurante.pais }}">
+                                            <button class="btn btn-sm btn-primary py-2 px-3 mt-3 float-right" type="submit"style="border-radius: 25px">Guardar cambios</button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> 
 
                 <div class="col-md-4 p-0">
                     <div class="row m-0">
-
-                        <div class="col-12 p-0  bg-white shadow-sm rounded p-4 mb-md-4 mb-3">
-                            <div class="tituloSecundarioLocal mb-3 pb-3 border-bottom">
-                                
-                                Contacto
-                            </div> 
-                            <a href="#" class="enlace">Teléfono: 622759791</a> <br>
-                            <a href="#" class="enlace">Email: holi@holi.es</a> 
-                        </div>
-
-                        <div class="col-12 p-0  bg-white shadow-sm rounded  p-4 mb-md-4 mb-3">
-                            <div class="tituloSecundarioLocal mb-3 pb-3 border-bottom">
-                                
-                                Dirección
-                            </div> 
-                            <p class="mb-0">
-                                Calle La Mancha N29 1A <br>
-                                Albatera, Alicante 
-                            </p>
-                        </div>
-
-                        <div class="col-12 p-0  bg-white  shadow-sm rounded p-4">
-                            <div class="tituloSecundarioLocal mb-3 pb-3 border-bottom">
-                                
+                        <div class="col-12 p-0  bg-white  shadow-sm rounded p-4 mt-4">
+                            <div class="tituloSecundarioLocal mb-0 pb-3 border-bottom">  
                                 Horario
                             </div> 
-                            <p class="mb-0">
-                                Lunes: <b class="text-danger">cerrado</b> <br>
-                                Martes: <b>10.00 - 23.00</b> <br>
-                                Miercoles: <b>10.00 - 23.00</b> <br>
-                                Jueves:  <b class="text-danger">cerrado</b> <br>
-                                Viernes: <b>10.00 - 00.00</b> <br>
-                                Sábado: <b>10.00 - 01.30</b> <br>
-                                Domingo: <b>10.00 - 23.00</b> <br>
-                            </p>
+                            <form method="post" action="{% url 'modificarHorario' %}">{% csrf_token %}
+                                <div class="row m-0">
+                                    <!-- lunes -->
+                                    <p class="mb-0 mt-3">Lunes</p> 
+                                    <div class="col-12 p-2 border rounded">
+                                        <div class="radio">
+                                            <input type="radio" value="True" name="lunes" id="siButtonLunes" {% if horario.lunes %} checked {% endif %}>
+                                            <label for="siButtonLunes">SI</label>
+                                            <input type="radio" value="False" name="lunes"  id="noButtonLunes" {% if not horario.lunes %} checked {% endif %}>
+                                            <label for="noButtonLunes">NO</label>
+                                        </div>
+                                        <div class="row mx-0 mt-2">
+                                            <div class="col-6 pr-1 pl-0 ">
+                                                <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="lunesOpen" value="{{ horario.lunesOpen }}">
+                                            </div>
+                                            <div class="col-6 pr-0 pl-1">
+                                                <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="lunesClose" value="{{ horario.lunesClose }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- martes -->
+                                    <p class="mb-0 mt-3">Martes</p> 
+                                    <div class="col-12 p-2 border rounded">
+                                        <div class="radio">
+                                            <input type="radio" value="True" name="martes" id="siButtonMartes" {% if horario.martes %} checked {% endif %}>
+                                            <label for="siButtonMartes">SI</label>
+                                            <input type="radio" value="False" name="martes"  id="noButtonMartes" {% if not horario.martes %} checked {% endif %}>
+                                            <label for="noButtonMartes">NO</label>
+                                        </div>
+                                        <div class="row mx-0 mt-2">
+                                            <div class="col-6 pr-1 pl-0 ">
+                                                <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="martesOpen" value="{{ horario.martesOpen }}">
+                                            </div>
+                                            <div class="col-6 pr-0 pl-1">
+                                                <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="martesClose" value="{{ horario.martesClose }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- miercoles -->
+                                    <p class="mb-0 mt-3">Miércoles</p> 
+                                    <div class="col-12 p-2 border rounded">
+                                        <div class="radio">
+                                            <input type="radio" value="True" name="miercoles" id="siButtonMiercoles" {% if horario.miercoles %} checked {% endif %}>
+                                            <label for="siButtonMiercoles">SI</label>
+                                            <input type="radio" value="False" name="miercoles"  id="noButtonMiercoles" {% if not horario.miercoles %} checked {% endif %}>
+                                            <label for="noButtonMiercoles">NO</label>
+                                        </div>
+                                        <div class="row mx-0 mt-2">
+                                            <div class="col-6 pr-1 pl-0 ">
+                                                <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="miercolesOpen" value="{{ horario.miercolesOpen }}">
+                                            </div>
+                                            <div class="col-6 pr-0 pl-1">
+                                                <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="miercolesClose" value="{{ horario.miercolesClose }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- jueves -->
+                                    <p class="mb-0 mt-3">Jueves</p> 
+                                    <div class="col-12 p-2 border rounded">
+                                        <div class="radio">
+                                            <input type="radio" value="True" name="jueves" id="siButtonJueves" {% if horario.jueves %} checked {% endif %}>
+                                            <label for="siButtonJueves">SI</label>
+                                            <input type="radio" value="False" name="jueves"  id="noButtonJueves" {% if not horario.jueves %} checked {% endif %}>
+                                            <label for="noButtonJueves">NO</label>
+                                        </div>
+                                        <div class="row mx-0 mt-2">
+                                            <div class="col-6 pr-1 pl-0 ">
+                                                <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="juevesOpen" value="{{ horario.juevesOpen }}">
+                                            </div>
+                                            <div class="col-6 pr-0 pl-1">
+                                                <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="juevesClose" value="{{ horario.juevesClose }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- viernes -->
+                                    <p class="mb-0 mt-3">Viernes</p> 
+                                    <div class="col-12 p-2 border rounded">
+                                        <div class="radio">
+                                            <input type="radio" value="True" name="viernes" id="siButtonViernes" {% if horario.viernes %} checked {% endif %}>
+                                            <label for="siButtonViernes">SI</label>
+                                            <input type="radio" value="False" name="viernes"  id="noButtonViernes" {% if not horario.viernes %} checked {% endif %}>
+                                            <label for="noButtonViernes">NO</label>
+                                        </div>
+                                        <div class="row mx-0 mt-2">
+                                            <div class="col-6 pr-1 pl-0 ">
+                                                <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="viernesOpen" value="{{ horario.viernesOpen }}">
+                                            </div>
+                                            <div class="col-6 pr-0 pl-1">
+                                                <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="viernesClose" value="{{ horario.viernesClose }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- sabado -->
+                                    <p class="mb-0 mt-3">Sábado</p> 
+                                    <div class="col-12 p-2 border rounded">
+                                        <div class="radio">
+                                            <input type="radio" value="True" name="sabado" id="siButtonSabado" {% if horario.sabado %} checked {% endif %}>
+                                            <label for="siButtonSabado">SI</label>
+                                            <input type="radio" value="False" name="sabado"  id="noButtonSabado" {% if not horario.sabado %} checked {% endif %}>
+                                            <label for="noButtonSabado">NO</label>
+                                        </div>
+                                        <div class="row mx-0 mt-2">
+                                            <div class="col-6 pr-1 pl-0 ">
+                                                <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="sabadoOpen" value="{{ horario.sabadoOpen }}">
+                                            </div>
+                                            <div class="col-6 pr-0 pl-1">
+                                                <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="sabadoClose" value="{{ horario.sabadoClose }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- domingo -->
+                                    <p class="mb-0 mt-3">Domingo</p> 
+                                    <div class="col-12 p-2 border rounded">
+                                        <div class="radio">
+                                            <input type="radio" value="True" name="domingo" id="siButtonDomingo" {% if horario.domingo %} checked {% endif %}>
+                                            <label for="siButtonDomingo">SI</label>
+                                            <input type="radio" value="False" name="domingo"  id="noButtonDomingo" {% if not horario.domingo %} checked {% endif %}>
+                                            <label for="noButtonDomingo">NO</label>
+                                        </div>
+                                        <div class="row mx-0 mt-2">
+                                            <div class="col-6 pr-1 pl-0 ">
+                                                <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="domingoOpen" value="{{ horario.domingoOpen }}">
+                                            </div>
+                                            <div class="col-6 pr-0 pl-1">
+                                                <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="domingoClose" value="{{ horario.domingoClose }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 p-0">
+                                        <button class="btn btn-sm btn-primary py-2 px-3 mt-3 float-right" type="submit" style="border-radius: 25px">Guardar cambios</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-
-
                     </div>
-
                 </div>
-
             </div>
-
-
 		</div>
 	</div>
 {% endblock %}

@@ -1,9 +1,10 @@
 # django
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import RegexValidator
+from django.utils.translation import gettext_lazy as _
 # utils
 from PIL import Image
+import uuid
 
 
 class Restaurante(models.Model):
@@ -16,13 +17,8 @@ class Restaurante(models.Model):
         max_length=200,
     )
 
-    phone_regex = RegexValidator(
-        regex=r'\+?1?\d{9,15}$',
-        message="El número de teléfono no está en el formato correcto"
-    )
 
     telefono = models.CharField(
-        validators=[phone_regex],
         max_length=17,
         blank=True,
     )
@@ -37,12 +33,17 @@ class Restaurante(models.Model):
         max_length=50,
     )
 
+    provincia = models.CharField(
+        'Provincia',
+        max_length=50,
+    )
+
     direccion = models.CharField(
         'Dirección',
         max_length=200,
     )
 
-    imagen = models.ImageField(upload_to='perfil', blank=False, default='default.png')
+    imagen = models.ImageField(upload_to='perfil', blank=True, null=True)
     
 
     is_active = models.BooleanField(
@@ -72,11 +73,12 @@ class Restaurante(models.Model):
             # cuando se guarde una nueva entrada del model le
             # reducimos el tamaño a la imagen
         super().save()
-        img = Image.open(self.imagen.path)
-        if img.height > 1500 or img.width > 1500:
-            output_size = (1500, 1500)
-            img.thumbnail((output_size), Image.ANTIALIAS)
-            img.save(self.imagen.path)
+        if self.imagen:
+            img = Image.open(self.imagen.path)
+            if img.height > 1500 or img.width > 1500:
+                output_size = (1500, 1500)
+                img.thumbnail((output_size), Image.ANTIALIAS)
+                img.save(self.imagen.path)
 
     def __str__(self):
         return self.nombre
@@ -130,3 +132,29 @@ class Horario(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+
+
+
+class Menu(models.Model):
+    id = models.UUIDField(_("ID"), primary_key=True,
+                           default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=200)
+    qr = models.ImageField(upload_to='QR')
+    pdf = models.FileField(upload_to='PDF')
+    created = models.DateTimeField(
+        'created at',
+        auto_now_add=True,
+        help_text='Date time on which the object was created'
+    )
+
+    modified = models.DateTimeField(
+        'Modified at',
+        auto_now=True,
+        help_text='Date time on which the object was last modified'
+    )
+
+    def __str__(self):
+        return self.nombre

@@ -43,6 +43,12 @@ select:focus {
 }
 
 
+.alert-error{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
 @media (max-width: 767px) {
     .movil {
         display: block
@@ -440,52 +446,79 @@ BUSCADOR
     line-height: 50px;
 }
 
-.imagenBusqueda{
-    width: 300px;
-    height: 200px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    float: left;
-}
-
-.datosBusqueda {
-    width: calc(100% - 300px);
-    height: auto;
-    float: left;
-}
-
-.localizacionBusqueda{
-    color: rgb(113, 113, 113);
-    line-height: 20px;
-    font-size: 14px;
-}
-
-.nombreBusqueda {
+.tituloResultado small{
     font-family: Cormorant Garamond,
         sans-serif;
-    font-size: 35px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 400;
     margin-bottom: 0;
-    line-height: 35px;
+    line-height: 20px;
+}
+
+
+.busquedaDiv{
+    width: 100%;
+    border-radius: 20px;
+    background-color: #fff;
+    float: left;
+}
+
+.imagenBusqueda{
+    height: 200px;
+    width: 100%;
+    float: left;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.cuerpoBusqueda{
+    width: 100%;
+    float: left;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+
+.cuerpoBusqueda h1{
+    font-family: Cormorant Garamond,
+    sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+    margin-bottom: 0;
+    line-height: 30px;
     color: #000;
 }
 
-.cantidadBusqueda{
-    font-size: 14px;
+.cuerpoBusqueda h2 {
+    font-size: 15px;
     font-weight: 400;
     margin-bottom: 0;
-    line-height: 14px;
+    line-height: 20px;
     color: #c0c0c0;
 }
 
-.btn-secondary{
-    background-color: #d7d7d7;
-    border-color: #d7d7d7;
+.cuerpoBusqueda h2 small{
+    font-size: 12px;
+    font-weight: 300;
+    margin-bottom: 0;
+    line-height: 15px;
+    color: #c0c0c0;
 }
 
+.divBuscador{
+    border-radius: 100px;
+}
+
+.botonBuscar{
+    border-radius: 30px;
+}
+
+
+.imagenNoResultados{
+    width: 40%;
+}
 @media (max-width: 767px) {
     .busquedaMotorCampo {
-        width: calc(50% - 27px - 5px);
+        width: calc(50% - 28px - 5px);
         margin-right: 5px;
         height: 40px !important;
     }
@@ -493,14 +526,14 @@ BUSCADOR
         font-size: 25px;
         line-height: 30px;
     }
-
-    .imagenBusqueda {
-        width: 100%;
-        height: 66vw;
+    .divBuscador {
+        border-radius: 5px;
     }
-
-    .datosBusqueda {
-        width: calc(100%);
+    .botonBuscar {
+        border-radius: 5px;
+    }
+    .imagenNoResultados {
+        width: 100%;
     }
 }
 
@@ -555,7 +588,7 @@ LOCAL
 .tituloMenu{
     font-family: Cormorant Garamond,
     sans-serif;
-    width: calc(100% - 70px);
+    width: calc(100% - 52px);
     float: left;
     font-weight: 600;
     text-overflow: ellipsis;
@@ -563,23 +596,12 @@ LOCAL
     white-space: nowrap;
 }
 
-.botonesMenu2{
-    width: 70px;
-    float: left;
-    height: 100%;
-    background: #000;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    text-align: center;
-    color: #fff!important;
-    font-size: 25px;
-    padding: 13px;
-}
+
 
 @media (max-width: 767px) {
     .portadaLocal {
         width: 100%;
-        height: 120px;
+        height: 200px;
         margin-top: 50px;
     }
 
@@ -594,6 +616,17 @@ LOCAL
 
     .tituloMenuLocal {
         font-size: 25px;
+    }
+
+    .tituloMenu {
+        font-family: Cormorant Garamond,
+            sans-serif;
+        width: calc(100% - 45px);
+        float: left;
+        font-weight: 600;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
 }
 
@@ -684,6 +717,70 @@ MANAGER
 }
 
 
+.inputLocal{
+    width: 100%;
+    padding: 6px;
+    background-color: #f9f9f9;
+    border: 1px solid #f9f9f9;
+}
+
+
+
+.radio p {
+    font-size: 14px;
+}
+
+.radio label {
+    display: inline-block;
+    cursor: pointer;
+    color: #007bff;
+    position: relative;
+    padding: 5px 10px 5px 27px;
+    font-size: 12px;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    background: #007bff1c;
+    margin-bottom: 0;
+}
+
+.radio label:hover {
+    background: #007bff59;
+}
+
+.radio label:before {
+    content: "";
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+    left: 10px;
+    border-radius: 50%;
+    background: none;
+    margin-top: 3px;
+    border: 1px solid #007bff;
+}
+
+.radio input[type="radio"] {
+    display: none;
+}
+
+.radio input[type="radio"]:checked+label:before {
+    display: none;
+}
+
+.radio input[type="radio"]:checked+label {
+    padding: 5px 15px;
+    background: #007bff;
+    border-radius: 2px;
+    color: #fff;
+}
+
+.singupDiv input.form-control {
+    height: 50px!important;
+}
+
 @media (max-width: 767px) {
 
     .botonesMenu1 {
@@ -712,4 +809,288 @@ MANAGER
     }
 
 
+}
+
+
+
+
+
+/* style 5 */
+
+.inputfile-5+label {
+    color: #007bff;
+}
+
+.inputfile-5:focus+label,
+.inputfile-5.has-focus+label,
+.inputfile-5+label:hover {
+    color: #0b63c0;
+}
+
+.inputfile-5+label figure {
+    width: 100px;
+    height: 135px;
+    background-color: #007bff;
+    display: block;
+    position: relative;
+    padding: 30px; 
+    margin: 0 auto 10px;
+}
+
+.inputfile-5:focus+label figure,
+.inputfile-5.has-focus+label figure,
+.inputfile-5+label:hover figure {
+    background-color: #094a91;
+}
+
+.inputfile-5+label figure::before,
+.inputfile-5+label figure::after {
+    width: 0;
+    height: 0;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.inputfile-5+label figure::before {
+    border-top: 20px solid #deedfd;
+    border-left: 20px solid transparent;
+}
+
+.inputfile-5+label figure::after {
+    border-bottom: 20px solid #094a91;
+    border-right: 20px solid transparent;
+}
+
+.inputfile-5:focus+label figure::after,
+.inputfile-5.has-focus+label figure::after,
+.inputfile-5+label:hover figure::after {
+    border-bottom-color: #007bff;
+}
+
+.inputfile-5+label svg {
+    width: 100%;
+    height: 100%;
+    fill: #c1dcf8;
+}
+
+
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile+label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    /* 20px */
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 30px 30px 20px;
+    /* 10px 20px */
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.no-js .inputfile+label {
+    display: none; 
+}
+
+.inputfile:focus+label,
+.inputfile.has-focus+label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+
+.inputCambiarFondo{
+    height: 40px;
+    width: 40px;
+    margin: 0;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.inputCambiarFondo input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 2;
+    top: 0;
+    left: 0;
+}
+
+.inputCambiarFondo a{
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    padding: 7px 0;
+
+}
+
+.botonNuevaImagen{
+    position: absolute;
+    top: 10px;
+    left: 55px;
+    border-radius: 25px;
+    display: none;
+    height: 40px;
+}
+
+.botonNuevaImagen.show {
+    display: block;
+}
+
+
+@media (max-width: 767px) {
+    .botonNuevaImagen {
+        top: 5px;
+        left: 50px;
+        font-size: 13px;
+    }
+
+    .inputCambiarFondo{
+        top: 5px;
+        left: 5px;
+    }
+}
+
+
+
+
+
+
+.overlayCompletar {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: calc(100vh);
+    top: 0px;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1200;
+    opacity: 1;
+}
+
+.completarPerfil{
+    height: calc(100vh - 100px);
+    width: 767px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.pasosCompletar{
+    display: none;
+    width: 100%;
+    height: calc(100% - 70px);
+    float: left;
+    overflow-y: scroll;
+    background: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: relative;
+}
+
+.pasosCompletar.active{
+    display: block;
+}
+
+.controladorCompletar {
+    width: 100%;
+    height: calc(70px);
+    float: left;
+    background: #f2f2f2;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: relative;
+}
+
+.centerAlign{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+}
+
+.rightAlign {
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    width: auto;
+}
+
+
+.pasoBoton{
+    height: 10px;
+    width: 10px;
+    float: left;
+    margin: 10px 5px 0;
+    background-color: #000;
+    opacity: .3;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.pasoBoton.active {
+    height: 20px;
+    width: 20px;
+    opacity: 1;
+    margin: 0px 5px ;
+    transition: .5s;
+}
+
+.alertaImagen{
+    position: absolute;
+    right: 10px;
+    width: 300px;
+    bottom: 10px;
+}
+
+.alertaImagen.show{
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .completarPerfil {
+        height: calc(100vh);
+        width: 100%;
+        margin: 0;
+        background-color: #fff;
+        border-radius: 0;
+    }
+
+    .controladorCompletar {
+        width: 100%;
+        height: calc(70px);
+        float: none;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        bottom: 0;
+        left: 0;
+        position: fixed;
+    }
+
+    .alertaImagen {
+        position: absolute;
+        right: 5px;
+        width: 250px;
+        top: 5px;
+        bottom: auto;
+        height: auto;
+        font-size: 12px;
+    }
 }

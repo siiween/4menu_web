@@ -11,23 +11,22 @@
 			<form method="post">{% csrf_token %}
                 <div class="row m-0 py-md-5 p-3">
                     <div class="col-md-8 p-0 offset-md-2">
-                        <div class="row m-0">
-
-
+                        <div class="row m-0 singupDiv">
                             <div class="col-md-12 p-0 border-bottom mb-4 pb-4">
                                 <p class="tituloResultado mb-0">
                                     Registra tu establecimiento gratis
                                 </p>
                             </div>
 
-                            {% if messages %}
-                                {% for message in messages %}
-                                    <div class="alert alert-{{ message.tags }}">
-                                        {{ message }}
-                                    </div>
-                                {% endfor %}
-                            {% endif %}
-
+                            <div class="col-12 p-0">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }}">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
 
                             <div class="col-md-6 rounded pr-md-3 p-0 mb-3">
                                 <label for="username" class="mb-0">Nombre de usuario</label>
@@ -57,8 +56,6 @@
                                 Aceptar <a href="#">términos y condiciones</a>
                                 <input type="checkbox" required  name="" required>
                             </div>
-
-                        
                             <div class="col-12 px-0  text-right">
                                 <button class="btn px-4 py-3 btn-primary" type="submit" style="border-radius:30px">
                                     Registrar mi establecimiento

@@ -11,3 +11,8 @@ class RestauranteAdmin(admin.ModelAdmin):
 @admin.register(Horario)
 class HorarioAdmin(admin.ModelAdmin):
     list_display = ('user', 'created')
+
+
+@admin.register(Menu)
+class MenuAdmin(admin.ModelAdmin):
+    list_display = ('user', 'nombre',  'created')

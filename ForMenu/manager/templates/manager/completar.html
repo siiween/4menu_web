@@ -1,0 +1,230 @@
+{% load static %}
+
+<style>
+    html{
+        overflow-y: hidden;
+    }
+</style>
+
+
+<div class="overlayCompletar">
+    <form method="post" action="{% url 'completarPerfil' %}">{% csrf_token %}
+        <div class="completarPerfil">
+            <!-- paso 1 -->
+            <div class="pasosCompletar active paso1">
+                <div class="centerAlign px-5 w-100">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="row m-0">
+                        <div class="col-12 p-0 text-center">
+                            <img src="{% static 'public/img/favicon.png' %}" alt="4Menu" height="60px" class="mb-3">
+                            <p class="tituloResultado mb-2 text-center">
+                                ¡Bienvenido!<br>
+                                <small>Necesitamos que hagas un último paso antes de comenzar</small>
+                            </p>
+                        </div>
+                        <div class="col-12 p-0 text-center">
+                            <button class="btn px-4 py-3 btn-dark mt-4 mb-5"  type="button" id="paso2_2" style="border-radius:30px">
+                                😎 Terminar el registro <span class="icon-arrow-right2 ml-2"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- paso 2 -->
+            <div class="pasosCompletar p-md-5 p-4 paso2">
+                <div class="row m-0">
+                    <div class="col-12 p-0">
+                        <p class="tituloResultado mb-3 pb-3 border-bottom text-left">
+                            Dirección del establecimiento
+                        </p>
+                    </div>
+                    <div class="col-12 p-0">
+                        <p class="mb-0">
+                            <small class="text-muted">Dirección</small>
+                            <input type="text" class="inputLocal mb-3" required name="direccion">
+                            <small class="text-muted">Ciudad</small>
+                            <input type="text" class="inputLocal mb-3" required name="ciudad">
+                            <small class="text-muted">Provincia</small>
+                            <input type="text" class="inputLocal mb-3" required name="provincia">
+                            <small class="text-muted">Pais</small>
+                            <input type="text" class="inputLocal" required name="pais">
+                        </p>
+                    </div>
+                    <div class="col-12 px-0 mt-3 pt-3 border-top">
+                        <button class="btn btn-sm btn-dark py-2 px-3 float-right"  type="button" id="paso3_2" style="border-radius: 25px">Siguiente <span class="icon-arrow-right2 ml-2"></span></button>
+                    </div>
+                </div>
+            </div>
+            <!-- paso 3 -->
+            <div class="pasosCompletar p-md-5 p-4 paso3">
+                <div class="row m-0">
+                <div class="col-12 p-0">
+                        <p class="tituloResultado mb-3 pb-3 border-bottom text-left">
+                            Horario
+                        </p>
+                    </div>
+                    <!-- lunes -->
+                    <div class="col-md-6 pr-md-2 p-0">
+                        <p class="mb-0 mt-0">Lunes</p> 
+                        <div class="col-12 p-2 border rounded">
+                            <div class="radio">
+                                <input type="radio" value="True" name="lunes" id="siButtonLunes2" {% if horario.lunes %} checked {% endif %}>
+                                <label for="siButtonLunes2">SI</label>
+                                <input type="radio" value="False" name="lunes"  id="noButtonLunes2" {% if not horario.lunes %} checked {% endif %}>
+                                <label for="noButtonLunes2">NO</label>
+                            </div>
+                            <div class="row mx-0 mt-2">
+                                <div class="col-6 pr-1 pl-0 ">
+                                    <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="lunesOpen" value="{{ horario.lunesOpen }}">
+                                </div>
+                                <div class="col-6 pr-0 pl-1">
+                                    <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="lunesClose" value="{{ horario.lunesClose }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- martes -->
+                    <div class="col-md-6 pl-md-2 p-0">
+                        <p class="mb-0 mt-md-0 mt-3">Martes</p> 
+                        <div class="col-12 p-2 border rounded">
+                            <div class="radio">
+                                <input type="radio" value="True" name="martes" id="siButtonMartes2" {% if horario.martes %} checked {% endif %}>
+                                <label for="siButtonMartes2">SI</label>
+                                <input type="radio" value="False" name="martes"  id="noButtonMartes2" {% if not horario.martes %} checked {% endif %}>
+                                <label for="noButtonMartes2">NO</label>
+                            </div>
+                            <div class="row mx-0 mt-2">
+                                <div class="col-6 pr-1 pl-0 ">
+                                    <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="martesOpen" value="{{ horario.martesOpen }}">
+                                </div>
+                                <div class="col-6 pr-0 pl-1">
+                                    <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="martesClose" value="{{ horario.martesClose }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- miercoles -->
+                    <div class="col-md-6 pr-md-2 p-0">
+                        <p class="mb-0 mt-3">Miércoles</p> 
+                        <div class="col-12 p-2 border rounded">
+                            <div class="radio">
+                                <input type="radio" value="True" name="miercoles" id="siButtonMiercoles2" {% if horario.miercoles %} checked {% endif %}>
+                                <label for="siButtonMiercoles2">SI</label>
+                                <input type="radio" value="False" name="miercoles"  id="noButtonMiercoles2" {% if not horario.miercoles %} checked {% endif %}>
+                                <label for="noButtonMiercoles2">NO</label>
+                            </div>
+                            <div class="row mx-0 mt-2">
+                                <div class="col-6 pr-1 pl-0 ">
+                                    <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="miercolesOpen" value="{{ horario.miercolesOpen }}">
+                                </div>
+                                <div class="col-6 pr-0 pl-1">
+                                    <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="miercolesClose" value="{{ horario.miercolesClose }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- jueves -->
+                    <div class="col-md-6 pl-md-2 p-0">
+                        <p class="mb-0 mt-3">Jueves</p> 
+                        <div class="col-12 p-2 border rounded">
+                            <div class="radio">
+                                <input type="radio" value="True" name="jueves" id="siButtonJueves2" {% if horario.jueves %} checked {% endif %}>
+                                <label for="siButtonJueves2">SI</label>
+                                <input type="radio" value="False" name="jueves"  id="noButtonJueves2" {% if not horario.jueves %} checked {% endif %}>
+                                <label for="noButtonJueves2">NO</label>
+                            </div>
+                            <div class="row mx-0 mt-2">
+                                <div class="col-6 pr-1 pl-0 ">
+                                    <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="juevesOpen" value="{{ horario.juevesOpen }}">
+                                </div>
+                                <div class="col-6 pr-0 pl-1">
+                                    <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="juevesClose" value="{{ horario.juevesClose }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- viernes -->
+                    <div class="col-md-6 pr-md-2 p-0">
+                        <p class="mb-0 mt-3">Viernes</p> 
+                        <div class="col-12 p-2 border rounded">
+                            <div class="radio">
+                                <input type="radio" value="True" name="viernes" id="siButtonViernes2" {% if horario.viernes %} checked {% endif %}>
+                                <label for="siButtonViernes2">SI</label>
+                                <input type="radio" value="False" name="viernes"  id="noButtonViernes2" {% if not horario.viernes %} checked {% endif %}>
+                                <label for="noButtonViernes2">NO</label>
+                            </div>
+                            <div class="row mx-0 mt-2">
+                                <div class="col-6 pr-1 pl-0 ">
+                                    <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="viernesOpen" value="{{ horario.viernesOpen }}">
+                                </div>
+                                <div class="col-6 pr-0 pl-1">
+                                    <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="viernesClose" value="{{ horario.viernesClose }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- sabado -->
+                    <div class="col-md-6 pl-md-2 p-0">
+                        <p class="mb-0 mt-3">Sábado</p> 
+                        <div class="col-12 p-2 border rounded">
+                            <div class="radio">
+                                <input type="radio" value="True" name="sabado" id="siButtonSabado2" {% if horario.sabado %} checked {% endif %}>
+                                <label for="siButtonSabado2">SI</label>
+                                <input type="radio" value="False" name="sabado"  id="noButtonSabado2" {% if not horario.sabado %} checked {% endif %}>
+                                <label for="noButtonSabado2">NO</label>
+                            </div>
+                            <div class="row mx-0 mt-2">
+                                <div class="col-6 pr-1 pl-0 ">
+                                    <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="sabadoOpen" value="{{ horario.sabadoOpen }}">
+                                </div>
+                                <div class="col-6 pr-0 pl-1">
+                                    <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="sabadoClose" value="{{ horario.sabadoClose }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- domingo -->
+                    <div class="col-md-6 pr-md-2 p-0">
+                        <p class="mb-0 mt-3">Domingo</p> 
+                        <div class="col-12 p-2 border rounded">
+                            <div class="radio">
+                                <input type="radio" value="True" name="domingo" id="siButtonDomingo2" {% if horario.domingo %} checked {% endif %}>
+                                <label for="siButtonDomingo2">SI</label>
+                                <input type="radio" value="False" name="domingo"  id="noButtonDomingo2" {% if not horario.domingo %} checked {% endif %}>
+                                <label for="noButtonDomingo2">NO</label>
+                            </div>
+                            <div class="row mx-0 mt-2">
+                                <div class="col-6 pr-1 pl-0 ">
+                                    <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="domingoOpen" value="{{ horario.domingoOpen }}">
+                                </div>
+                                <div class="col-6 pr-0 pl-1">
+                                    <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="domingoClose" value="{{ horario.domingoClose }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 px-0 mt-3 pt-3 border-top">
+                        <button class="btn btn-sm btn-dark py-2 px-3 float-left"  type="button" id="paso2_3" style="border-radius: 25px"><span class="icon-arrow-left2 mr-2"></span> Anterior</button>
+                        <button class="btn btn-sm btn-primary py-2 px-3 float-right" type="submit" style="border-radius: 25px">Guardar cambios</button>
+                    </div>
+                </div>
+            </div>
+            <!-- controlador -->
+            <div class="controladorCompletar">
+                <img src="{% static 'public/img/logo4menu.png' %}" alt="4Menu" height="30px" class="m-4">
+
+                <div class="rightAlign text-center">
+                    <div class="pasoBoton shadowHover paso2" id="paso2"></div>
+                    <div class="pasoBoton shadowHover paso3" id="paso3"></div>
+                </div>
+            </div>            
+        </div>
+    </form>
+</div>

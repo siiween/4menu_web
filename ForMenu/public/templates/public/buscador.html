@@ -5,47 +5,59 @@
     Buscar {{nombre}} {% if ciudad %} en {{ciudad}} {% endif %}
 {% endblock %}
 
-{% block content %} 
-   	<div class="bg-white" style="width: 100%; margin-top: 70px">
-		<div class="contenedor">
-			<div class="row m-0 px-3">
-				<div class="col-12 py-3 py-md-4 px-0">
-					<form action="{% url 'buscar' %}">
-						<input value="{{nombre}}" type="text" name='n' required class="formularioContacto busquedaMotorCampo" placeholder="Nombre">
-                        <input value="{{ciudad}}" type="text" name='c' required class="formularioContacto busquedaMotorCampo" placeholder="Ciudad">
-						<button class="btn-primary btn border-0 rounded float-right px-md-5 py-md-3 px-3 py-2" type="submit"><span class="icon-search"></span></button>
-					</form>
-				</div>
 
-                <div class="col-12 px-0 mt-md-4  mt-3 border-bottom pb-3">
-                    <p class="tituloResultado">
-                        Resultados de la búsqueda
-                    </p>
+{% block content %}
+<style>
+    body{
+        background-color: #f4f7f8
+    }
+</style> 
+   	<div style="width: 100%; margin-top: 70px">
+		<div class="contenedor pb-5">
+			<div class="row m-0">
+                <div class="col-12 p-md-3 p-2 mt-md-4 mt-0">
+                    <div class="w-100 float-left p-2 py-md-4 px-md-5 bg-white shadow-sm divBuscador">
+                        <form action="{% url 'buscar' %}">
+                            <input value="{{nombre}}" type="text" name='n' class="formularioContacto busquedaMotorCampo" placeholder="Nombre">
+                            <input value="{{ciudad}}" type="text" name='c' class="formularioContacto busquedaMotorCampo" placeholder="Ciudad">
+                            <button class="btn-primary btn float-right px-md-5 py-md-3 px-3 py-2 botonBuscar" type="submit"><span class="icon-search"></span></button>
+                        </form>
+                    </div>
                 </div>
 
-
-                <div class="col-md-8 px-0 mt-4">
-                    <a href="{% url 'local' %}" class="enlace">
-                        <div class="imagenBusqueda"  style="background: url('{%static 'public/img/restaurante.jpg'%}') no-repeat;background-size: cover; background-position: center !important;"></div>
-                        <div class="datosBusqueda pl-md-4">
-                            <div class="localizacionBusqueda mt-md-0 mt-3 mb-1">
-                                Albatera, España
+                {% for restaurante in restaurantes %}
+                    <div class="col-md-4 p-3">
+                        <a href="{% url 'local' restaurante.user.username %}" class="enlace">
+                            <div class="busquedaDiv shadow-sm shadowHover">
+                                <div class="imagenBusqueda" style="background:url({{restaurante.imagen.url}}) no-repeat; background-size: cover; background-position: center !important;"></div>
+                                <div class="cuerpoBusqueda p-3">
+                                    <h1>{{restaurante.nombre}}</h1>
+                                    <h2 class="mt-1">{{restaurante.ciudad}}, {{restaurante.provincia}} <small>({{restaurante.pais}})</small></h2>
+                                </div>
+                                <div class="w-100 float-left px-3 pb-1">
+                                    {% for menu in menus %}
+                                        {% if menu.user == restaurante.user %}
+                                            <div class="w-100 float-left p-0 mt-2 mb-2 bg-light divMenu shadowHover">
+                                                <div class="tituloMenu p-3">{{menu.nombre}}</div>
+                                                <a class="botonesMenu1 enlace" href="{{menu.pdf.url}}" download="">
+                                                    <span class="icon-cloud-download"></span>
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                    {% empty %}
+                                    {% endfor %}
+                                </div>
                             </div>
-                            <div class="nombreBusqueda mb-2">
-                                Pizzeria Capichi
-                            </div>
-                            <div class="cantidadBusqueda mb-2">4 menús</div>
-                            <div class="descripcionBusqueda">
-                                esta es la descripcion de la pizzeria Capichi
-                                una pizzeria de albatera muy chupiflower que hacer
-                                pizzas y demas mierdas italianas xd.
-                            </div>
-                            <a href="#" class="btn btn-sm btn-secondary mt-2">
-                                <span class="icon-star-full"></span>
-                            </a>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                {% empty %}
+                    <div class="col-12 px-md-5 p-3 text-center"> 
+                        <img class="imagenNoResultados" src="{% static 'public/img/donuts.png'%}" alt="Donuuuuuuts">
+                    </div>
+                    <div class="col-12 p-3 text-center"> 
+                        No hay resultados 😭
+                    </div>
+                {% endfor %}
 
 			</div>
 		</div>

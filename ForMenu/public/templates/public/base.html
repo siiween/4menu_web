@@ -22,9 +22,12 @@
         <div class="overlay2" id="overlay2"></div>
         {% block content %}
         {% endblock %}
-
         {% if user.is_authenticated %}
             {% include 'public/includes/ayuda.html'%}
+            {% include 'manager/crearMenu.html'%}
+            {% if not restaurante.is_complete %}
+                {% include 'manager/completar.html'%}
+            {% endif %}
         {% else %}
             {% include 'public/includes/login.html'%}
             {% include 'public/includes/alta.html'%}
@@ -36,5 +39,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
         <script type="text/javascript" src="{% static 'public/js/nav.js' %}"></script>
+        <script type="text/javascript" src="{% static 'manager/js/custom-file-input.js'%}"></script>
     </body>
 </html>

@@ -11,5 +11,5 @@ urlpatterns = [
     path('registro/', views.singup, name='singup'),
     path('', views.inicio, name='inicio'),
     path('buscar/', views.buscador, name='buscar'),
-    path('@capichi/', views.local, name='local'),
+    path('@<str:username>/', views.local, name='local'),
 ]
