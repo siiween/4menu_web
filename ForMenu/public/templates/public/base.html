@@ -25,7 +25,7 @@
         {% block content %}
         {% endblock %}
         {% if user.is_authenticated %}
-            {% include 'public/includes/ayuda.html'%}
+            {% include 'manager/ajustes.html'%}
             {% include 'manager/crearMenu.html'%}
         {% else %}
             {% include 'public/includes/login.html'%}

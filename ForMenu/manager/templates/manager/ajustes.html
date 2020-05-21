@@ -1,0 +1,51 @@
+<div class="lateralDiv px-md-5 pt-md-5 p-3" id="ajustesDiv">
+    <span class="icon-cross" id="closeAjustes"></span>
+    <form method="post" action="{% url 'ajustes'%}">{% csrf_token %}
+        <div class="row m-0 pt-5 pb-5">
+            <div class="col-md-8 offset-md-2 p-0">
+                 <p class="tituloResultado mb-3 pb-3 border-bottom text-left">
+                    Ajustes de @{{user.username}}
+                </p>
+            </div>
+            <div class="col-md-8 offset-md-2 p-0">
+                <small class="text-muted">Nombre de usuario</small>
+                <input type="text" class="inputLocal mb-3" required name="username" value="{{ user.username }}">
+                <small class="text-muted">Nombre</small>
+                <input type="text" class="inputLocal mb-3" required name="first_name" value="{{ user.first_name }}">
+                <small class="text-muted">Apellidos</small>
+                <input type="text" class="inputLocal" required name="last_name" value="{{ user.last_name }}">
+                <button class="btn btn-sm btn-primary py-2 px-3 mt-4 float-right" style="border-radius: 25px" type="submit">Guardar cambios</button>
+                <button class="btn btn-sm btn-dark py-2 px-3 mt-4 float-left mr-3" style="border-radius: 25px" type="button" data-toggle="modal" data-target="#contraseña">contraseña</button>
+            </div>
+        </div>
+    </form>
+</div> 
+
+
+<!-- Modal -->
+<div class="modal fade" id="contraseña" tabindex="-1" role="dialog" aria-labelledby="contraseña" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content p-5">  
+            <form method="post" action="{% url 'password' %}">{% csrf_token %}
+                <div class="row m-0">
+                    <div class="col-12 p-0">
+                        <p class="tituloResultado mb-3 pb-3 border-bottom text-left">
+                            Modificar contraseña
+                        </p>
+                    </div>
+                    <div class="col-12 p-0">
+                        <small class="text-muted">Contraseña antigua</small>
+                        <input type="password" class="inputLocal mb-3" required name="passwordOld">
+                        <small class="text-muted">Contraseña nueva</small>
+                        <input type="password" class="inputLocal mb-3" required name="password">
+                        <small class="text-muted">Contraseña nueva (confirmación)</small>
+                        <input type="password" class="inputLocal" required name="password2">
+                    </div>
+                    <div class="col-12 p-0">
+                        <button class="btn btn-sm btn-primary py-2 px-3 mt-3 float-right" style="border-radius: 25px" type="submit">Modificar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

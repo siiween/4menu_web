@@ -682,7 +682,7 @@ LOCAL
 .tituloMenu{
     font-family: Cormorant Garamond,
     sans-serif;
-    width: calc(100% - 52px);
+    width: calc(100% - 52px - 52px);
     float: left;
     font-weight: 600;
     text-overflow: ellipsis;
@@ -715,7 +715,7 @@ LOCAL
     .tituloMenu {
         font-family: Cormorant Garamond,
             sans-serif;
-        width: calc(100% - 45px);
+        width: calc(100% - 45px - 45px);
         float: left;
         font-weight: 600;
         text-overflow: ellipsis;
@@ -829,8 +829,8 @@ MANAGER
     cursor: pointer;
     color: #007bff;
     position: relative;
-    padding: 5px 10px 5px 27px;
-    font-size: 12px;
+    padding: 3px 10px;
+    font-size: 10px;
     border-radius: 5px;
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -839,22 +839,13 @@ MANAGER
     margin-bottom: 0;
 }
 
-.radio label:hover {
-    background: #007bff59;
+.radio label.no {
+    color: #dc3545;
+    background: rgba(255, 0, 0, 0.05);
 }
 
-.radio label:before {
-    content: "";
-    display: inline-block;
-    width: 11px;
-    height: 11px;
-    position: absolute;
-    left: 10px;
-    border-radius: 50%;
-    background: none;
-    margin-top: 3px;
-    border: 1px solid #007bff;
-}
+
+
 
 .radio input[type="radio"] {
     display: none;
@@ -865,15 +856,66 @@ MANAGER
 }
 
 .radio input[type="radio"]:checked+label {
-    padding: 5px 15px;
+    padding: 3px 10px;
     background: #007bff;
     border-radius: 2px;
     color: #fff;
 }
 
+.radio input[type="radio"]:checked+label.no{
+    background: #dc3545;
+}
+
 .singupDiv input.form-control {
     height: 50px!important;
 }
+
+.lunes.active .caja,
+.lunes.active small,
+.lunes.active .turno,
+.lunes.active .turno,
+.lunes.active2 .turnoCaja,
+/* martes */
+.martes.active .caja,
+.martes.active small,
+.martes.active .turno,
+.martes.active .turno,
+.martes.active2 .turnoCaja,
+/* miercoles */
+.miercoles.active .caja,
+.miercoles.active small,
+.miercoles.active .turno,
+.miercoles.active .turno,
+.miercoles.active2 .turnoCaja,
+/* jueves */
+.jueves.active .caja,
+.jueves.active small,
+.jueves.active .turno,
+.jueves.active .turno,
+.jueves.active2 .turnoCaja,
+/* viernes */
+.viernes.active .caja,
+.viernes.active small,
+.viernes.active .turno,
+.viernes.active .turno,
+.viernes.active2 .turnoCaja,
+/* sabado */
+.sabado.active .caja,
+.sabado.active small,
+.sabado.active .turno,
+.sabado.active .turno,
+.sabado.active2 .turnoCaja,
+/* domingo */
+.domingo.active .caja,
+.domingo.active small,
+.domingo.active .turno,
+.domingo.active .turno,
+.domingo.active2 .turnoCaja
+{
+   display: none;
+}
+
+
 
 @media (max-width: 767px) {
 

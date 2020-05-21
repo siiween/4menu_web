@@ -45,16 +45,26 @@
                                     <h2 class="mt-1">{{restaurante.ciudad}}, {{restaurante.provincia}} <small>({{restaurante.pais}})</small></h2>
                                 </div>
                                 <div class="w-100 float-left px-3 pb-1">
-                                    {% for menu in menus %}
+                                    {% for menu in menus %} 
                                         {% if menu.user == restaurante.user %}
-                                            <div class="w-100 float-left p-0 mt-2 mb-2 bg-light divMenu shadowHover">
+                                            <div class="col-12 p-0 mt-2 mb-1 bg-light  divMenu shadowHover">
                                                 <div class="tituloMenu p-3">{{menu.nombre}}</div>
+                                                <a class="botonesMenu1 bg-primary" data-toggle="modal" data-target="#qrcode_{{menu.id}}">
+                                                    <span class="icon-qrcode"></span>
+                                                </a>
                                                 <a class="botonesMenu1 enlace" href="{{menu.pdf.url}}" download="">
                                                     <span class="icon-cloud-download"></span>
                                                 </a>
                                             </div>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="qrcode_{{menu.id}}" tabindex="-1" role="dialog" aria-labelledby="eliminar_{{menu.id}}" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content p-md-5 p-4">
+                                                        <img src="{{menu.qr.url}}" alt="Código QR" class="w-100">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         {% endif %}
-                                    {% empty %}
                                     {% endfor %}
                                 </div>
                             </div>

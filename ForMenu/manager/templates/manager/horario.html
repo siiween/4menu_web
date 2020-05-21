@@ -1,0 +1,267 @@
+<!-- lunes -->
+<p class="mb-0 mt-3">Lunes</p> 
+<div class="col-12 p-2 border rounded lunes">
+    <div class="radio">
+        <input name="lunes" id="si_lunes" {% if horario.lunes %} checked {% endif %} type="radio" value="True">
+        <label for="si_lunes">Abierto</label>
+        <input name="lunes" id="no_lunes" {% if not horario.lunes %} checked {% endif %} type="radio" value="False">
+        <label for="no_lunes" class="no">Cerrado</label>
+        <small>-</small>
+        <input name="lunesTurno" id="si_turno_lunes" {% if not horario.lunesTurno %} checked {% endif %} type="radio" value="False" class="turno">
+        <label for="si_turno_lunes" class="turno">1 turno</label>
+        <input name="lunesTurno" id="no_turno_lunes" {% if horario.lunesTurno %} checked {% endif %} type="radio" value="True" class="turno">
+        <label for="no_turno_lunes" class="turno">2 turnos</label>
+    </div>
+    <div class="row mx-0 mt-2 caja">
+        <div class="col-12 p-0">
+            <div class="row m-0">
+                <div class="col-6 pr-1 pl-0 ">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Apertura" name="lunesOpen" value="{{ horario.lunesOpen }}">
+                </div>
+                <div class="col-6 pr-0 pl-1">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Cierre" name="lunesClose" value="{{ horario.lunesClose }}">
+                </div>
+            </div>
+            <div class="row mx-0 mt-1 turnoCaja">
+                <div class="col-6 pr-1 pl-0 ">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Apertura" name="lunesOpen2" value="{{ horario.lunesOpen2 }}">
+                </div>
+                <div class="col-6 pr-0 pl-1">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Cierre" name="lunesClose2" value="{{ horario.lunesClose2 }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- martes -->
+<p class="mb-0 mt-3">Martes</p> 
+<div class="col-12 p-2 border rounded martes">
+    <div class="radio">
+        <input name="martes" id="si_martes" {% if horario.martes %} checked {% endif %} type="radio" value="True">
+        <label for="si_martes">Abierto</label>
+        <input name="martes" id="no_martes" {% if not horario.martes %} checked {% endif %} type="radio" value="False">
+        <label for="no_martes" class="no">Cerrado</label>
+        <small>-</small>
+        <input name="martesTurno" id="si_turno_martes" {% if not horario.martesTurno %} checked {% endif %} type="radio" value="False" class="turno">
+        <label for="si_turno_martes"class="turno">1 turno</label>
+        <input name="martesTurno" id="no_turno_martes" {% if horario.martesTurno %} checked {% endif %} type="radio" value="True" class="turno">
+        <label for="no_turno_martes"class="turno">2 turnos</label>
+    </div>
+    <div class="row mx-0 mt-2 caja">
+        <div class="col-12 p-0">
+            <div class="row m-0">
+                <div class="col-6 pr-1 pl-0 ">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Apertura" name="martesOpen" value="{{ horario.martesOpen }}">
+                </div>
+                <div class="col-6 pr-0 pl-1">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Cierre" name="martesClose" value="{{ horario.martesClose }}">
+                </div>
+            </div>
+            <div class="row mx-0 mt-1 turnoCaja">
+                <div class="col-6 pr-1 pl-0 ">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Apertura" name="martesOpen2" value="{{ horario.martesOpen2 }}">
+                </div>
+                <div class="col-6 pr-0 pl-1">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Cierre" name="martesClose2" value="{{ horario.martesClose2 }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- miercoles -->
+<p class="mb-0 mt-3">Miércoles</p> 
+<div class="col-12 p-2 border rounded miercoles">
+    <div class="radio">
+        <input name="miercoles" id="si_miercoles" {% if horario.miercoles %} checked {% endif %} type="radio" value="True">
+        <label for="si_miercoles">Abierto</label>
+        <input name="miercoles" id="no_miercoles" {% if not horario.miercoles %} checked {% endif %} type="radio" value="False">
+        <label for="no_miercoles" class="no">Cerrado</label>
+        <small>-</small>
+        <input name="miercolesTurno" id="si_turno_miercoles" {% if not horario.miercolesTurno %} checked {% endif %} type="radio" value="False" class="turno">
+        <label for="si_turno_miercoles"class="turno">1 turno</label>
+        <input name="miercolesTurno" id="no_turno_miercoles" {% if horario.miercolesTurno %} checked {% endif %} type="radio" value="True" class="turno">
+        <label for="no_turno_miercoles"class="turno">2 turnos</label>
+    </div>
+    <div class="row mx-0 mt-2 caja">
+        <div class="col-12 p-0">
+            <div class="row m-0">
+                <div class="col-6 pr-1 pl-0 ">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Apertura" name="miercolesOpen" value="{{ horario.miercolesOpen }}">
+                </div>
+                <div class="col-6 pr-0 pl-1">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Cierre" name="miercolesClose" value="{{ horario.miercolesClose }}">
+                </div>
+            </div>
+            <div class="row mx-0 mt-1 turnoCaja">
+                <div class="col-6 pr-1 pl-0 ">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Apertura" name="miercolesOpen2" value="{{ horario.miercolesOpen2 }}">
+                </div>
+                <div class="col-6 pr-0 pl-1">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Cierre" name="miercolesClose2" value="{{ horario.miercolesClose2 }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- jueves -->
+<p class="mb-0 mt-3">Jueves</p> 
+<div class="col-12 p-2 border rounded jueves">
+    <div class="radio">
+        <input name="jueves" id="si_jueves" {% if horario.jueves %} checked {% endif %} type="radio" value="True">
+        <label for="si_jueves">Abierto</label>
+        <input name="jueves" id="no_jueves" {% if not horario.jueves %} checked {% endif %} type="radio" value="False">
+        <label for="no_jueves" class="no">Cerrado</label>
+        <small>-</small>
+        <input name="juevesTurno" id="si_turno_jueves" {% if not horario.juevesTurno %} checked {% endif %} type="radio" value="False" class="turno">
+        <label for="si_turno_jueves"class="turno">1 turno</label>
+        <input name="juevesTurno" id="no_turno_jueves" {% if horario.juevesTurno %} checked {% endif %} type="radio" value="True" class="turno">
+        <label for="no_turno_jueves"class="turno">2 turnos</label>
+    </div>
+    <div class="row mx-0 mt-2 caja">
+        <div class="col-12 p-0">
+            <div class="row m-0">
+                <div class="col-6 pr-1 pl-0 ">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Apertura" name="juevesOpen" value="{{ horario.juevesOpen }}">
+                </div>
+                <div class="col-6 pr-0 pl-1">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Cierre" name="juevesClose" value="{{ horario.juevesClose }}">
+                </div>
+            </div>
+            <div class="row mx-0 mt-1 turnoCaja">
+                <div class="col-6 pr-1 pl-0 ">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Apertura" name="juevesOpen2" value="{{ horario.juevesOpen2 }}">
+                </div>
+                <div class="col-6 pr-0 pl-1">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Cierre" name="juevesClose2" value="{{ horario.juevesClose2 }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- viernes -->
+<p class="mb-0 mt-3">Viernes</p> 
+<div class="col-12 p-2 border rounded viernes">
+    <div class="radio">
+        <input name="viernes" id="si_viernes" {% if horario.viernes %} checked {% endif %} type="radio" value="True">
+        <label for="si_viernes">Abierto</label>
+        <input name="viernes" id="no_viernes" {% if not horario.viernes %} checked {% endif %} type="radio" value="False">
+        <label for="no_viernes" class="no">Cerrado</label>
+        <small>-</small>
+        <input name="viernesTurno" id="si_turno_viernes" {% if not horario.viernesTurno %} checked {% endif %} type="radio" value="False" class="turno">
+        <label for="si_turno_viernes"class="turno">1 turno</label>
+        <input name="viernesTurno" id="no_turno_viernes" {% if horario.viernesTurno %} checked {% endif %} type="radio" value="True" class="turno">
+        <label for="no_turno_viernes"class="turno">2 turnos</label>
+    </div>
+    <div class="row mx-0 mt-2 caja">
+        <div class="col-12 p-0">
+            <div class="row m-0">
+                <div class="col-6 pr-1 pl-0 ">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Apertura" name="viernesOpen" value="{{ horario.viernesOpen }}">
+                </div>
+                <div class="col-6 pr-0 pl-1">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Cierre" name="viernesClose" value="{{ horario.viernesClose }}">
+                </div>
+            </div>
+            <div class="row mx-0 mt-1 turnoCaja">
+                <div class="col-6 pr-1 pl-0 ">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Apertura" name="viernesOpen2" value="{{ horario.viernesOpen2 }}">
+                </div>
+                <div class="col-6 pr-0 pl-1">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Cierre" name="viernesClose2" value="{{ horario.viernesClose2 }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- sabado -->
+<p class="mb-0 mt-3">Sábado</p> 
+<div class="col-12 p-2 border rounded sabado">
+    <div class="radio">
+        <input name="sabado" id="si_sabado" {% if horario.sabado %} checked {% endif %} type="radio" value="True">
+        <label for="si_sabado">Abierto</label>
+        <input name="sabado" id="no_sabado" {% if not horario.sabado %} checked {% endif %} type="radio" value="False">
+        <label for="no_sabado" class="no">Cerrado</label>
+        <small>-</small>
+        <input name="sabadoTurno" id="si_turno_sabado" {% if not horario.sabadoTurno %} checked {% endif %} type="radio" value="False" class="turno">
+        <label for="si_turno_sabado"class="turno">1 turno</label>
+        <input name="sabadoTurno" id="no_turno_sabado" {% if horario.sabadoTurno %} checked {% endif %} type="radio" value="True" class="turno">
+        <label for="no_turno_sabado"class="turno">2 turnos</label>
+    </div>
+    <div class="row mx-0 mt-2 caja">
+        <div class="col-12 p-0">
+            <div class="row m-0">
+                <div class="col-6 pr-1 pl-0 ">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Apertura" name="sabadoOpen" value="{{ horario.sabadoOpen }}">
+                </div>
+                <div class="col-6 pr-0 pl-1">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Cierre" name="sabadoClose" value="{{ horario.sabadoClose }}">
+                </div>
+            </div>
+            <div class="row mx-0 mt-1 turnoCaja">
+                <div class="col-6 pr-1 pl-0 ">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Apertura" name="sabadoOpen2" value="{{ horario.sabadoOpen2 }}">
+                </div>
+                <div class="col-6 pr-0 pl-1">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Cierre" name="sabadoClose2" value="{{ horario.sabadoClose2 }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- domingo -->
+<p class="mb-0 mt-3">Domingo</p> 
+<div class="col-12 p-2 border rounded domingo">
+    <div class="radio">
+        <input name="domingo" id="si_domingo" {% if horario.domingo %} checked {% endif %} type="radio" value="True">
+        <label for="si_domingo">Abierto</label>
+        <input name="domingo" id="no_domingo" {% if not horario.domingo %} checked {% endif %} type="radio" value="False">
+        <label for="no_domingo" class="no">Cerrado</label>
+        <small>-</small>
+        <input name="domingoTurno" id="si_turno_domingo" {% if not horario.domingoTurno %} checked {% endif %} type="radio" value="False" class="turno">
+        <label for="si_turno_domingo"class="turno">1 turno</label>
+        <input name="domingoTurno" id="no_turno_domingo" {% if horario.domingoTurno %} checked {% endif %} type="radio" value="True" class="turno">
+        <label for="no_turno_domingo"class="turno">2 turnos</label>
+    </div>
+    <div class="row mx-0 mt-2 caja">
+        <div class="col-12 p-0">
+            <div class="row m-0">
+                <div class="col-6 pr-1 pl-0 ">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Apertura" name="domingoOpen" value="{{ horario.domingoOpen }}">
+                </div>
+                <div class="col-6 pr-0 pl-1">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Cierre" name="domingoClose" value="{{ horario.domingoClose }}">
+                </div>
+            </div>
+            <div class="row mx-0 mt-1 turnoCaja">
+                <div class="col-6 pr-1 pl-0 ">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Apertura" name="domingoOpen2" value="{{ horario.domingoOpen2 }}">
+                </div>
+                <div class="col-6 pr-0 pl-1">
+                    <input type="time" class="inputLocal border rounded" required placeholder="Cierre" name="domingoClose2" value="{{ horario.domingoClose2 }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-12 p-0">
+        <button class="btn btn-sm btn-primary py-2 px-3 mt-3 float-right" type="submit"style="border-radius: 25px">Guardar cambios</button>
+</div>
+

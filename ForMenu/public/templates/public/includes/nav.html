@@ -14,7 +14,7 @@
     <div class="navigation">
         {% if user.is_authenticated %}
             <a class="btn px-4" role="button" checked href="{% url 'logout'%}"> Cerrar sesión </a>
-            <a class="btn px-4 active" role="button"  id="activeAyuda" checked> Ayuda </a>
+            <a class="btn px-4 active" role="button"  id="activeAjustes" checked> Ajustes </a>
         {% else %}
             <a class="btn px-4" role="button"  id="activeLogin" checked> Iniciar sesión </a>
             <hr class="movil my-0 border-0">

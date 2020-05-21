@@ -27,8 +27,6 @@
         </div>
     </div> 
 
-
-
     <div class="contenedor px-3 pb-5">
         <div class="row m-0">
 
@@ -47,9 +45,20 @@
                             {% for menu in menus %}
                                 <div class="col-12 p-0 mt-2 mb-1 bg-light  divMenu shadowHover">
                                     <div class="tituloMenu p-3">{{menu.nombre}}</div>
+                                    <a class="botonesMenu1 bg-primary" data-toggle="modal" data-target="#qrcode_{{menu.id}}">
+                                        <span class="icon-qrcode"></span>
+                                    </a>
                                     <a class="botonesMenu1 enlace" href="{{menu.pdf.url}}" download="">
                                         <span class="icon-cloud-download"></span>
                                     </a>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="qrcode_{{menu.id}}" tabindex="-1" role="dialog" aria-labelledby="eliminar_{{menu.id}}" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content p-md-5 p-4">
+                                            <img src="{{menu.qr.url}}" alt="Código QR" class="w-100">
+                                        </div>
+                                    </div>
                                 </div>
                             {% empty %}
                                 <div class="col-md-6 offset-md-3 p-0 text-center">
@@ -113,43 +122,64 @@
                         <div class="row m-0">
                             <!-- lunes -->
                             {% if horario.lunes %}
-                                <div class="col-12 p-0 mt-3">Lunes: <b class="ml-2">{{horario.lunesOpen}} - {{horario.lunesClose}}</b> </div>
+                                <div class="col-12 p-0 mt-3">
+                                    Lunes: <b class="ml-2">{{horario.lunesOpen}} - {{horario.lunesClose}}</b> 
+                                    {% if horario.lunesTurno %} / <b> {{horario.lunesOpen2}} - {{horario.lunesClose2}} </b> {% endif %} 
+                                </div>
                             {% else %}
                                 <div class="col-12 p-0 mt-3">Lunes: <b class="ml-2 text-danger">cerrado</b> </div>
                             {% endif %}
                             <!-- martes -->
                             {% if horario.martes %}
-                                <div class="col-12 p-0 mt-2">Martes: <b class="ml-2">{{horario.martesOpen}} - {{horario.martesClose}}</b> </div>
+                                <div class="col-12 p-0 mt-2">
+                                    Martes: <b class="ml-2">{{horario.martesOpen}} - {{horario.martesClose}}</b> 
+                                    {% if horario.martesTurno %} / <b> {{horario.martesOpen2}} - {{horario.martesClose2}} </b> {% endif %} 
+                                </div>
                             {% else %}
                                 <div class="col-12 p-0 mt-2">Martes: <b class="ml-2 text-danger">cerrado</b> </div>
                             {% endif %}
                             <!-- miercoles -->
                             {% if horario.miercoles %}
-                                <div class="col-12 p-0 mt-2">Miércoles: <b class="ml-2">{{horario.miercolesOpen}} - {{horario.miercolesClose}}</b> </div>
+                                <div class="col-12 p-0 mt-2">
+                                    Miércoles: <b class="ml-2">{{horario.miercolesOpen}} - {{horario.miercolesClose}}</b> 
+                                    {% if horario.miercolesTurno %} / <b> {{horario.miercolesOpen2}} - {{horario.miercolesClose2}} </b> {% endif %} 
+                                </div>
                             {% else %}
                                 <div class="col-12 p-0 mt-2">Miércoles: <b class="ml-2 text-danger">cerrado</b> </div>
                             {% endif %}
                             <!-- jueves -->
                             {% if horario.jueves %}
-                                <div class="col-12 p-0 mt-2">Jueves: <b class="ml-2">{{horario.juevesOpen}} - {{horario.juevesClose}}</b> </div>
+                                <div class="col-12 p-0 mt-2">Jueves: <b class="ml-2">
+                                    {{horario.juevesOpen}} - {{horario.juevesClose}}</b> 
+                                    {% if horario.juevesTurno %} / <b> {{horario.juevesOpen2}} - {{horario.juevesClose2}} </b> {% endif %} 
+                                </div>
                             {% else %}
                                 <div class="col-12 p-0 mt-2">Jueves: <b class="ml-2 text-danger">cerrado</b> </div>
                             {% endif %}
                             <!-- viernes -->
                             {% if horario.viernes %}
-                                <div class="col-12 p-0 mt-2">Viernes: <b class="ml-2">{{horario.viernesOpen}} - {{horario.viernesClose}}</b> </div>
+                                <div class="col-12 p-0 mt-2">
+                                    Viernes: <b class="ml-2">{{horario.viernesOpen}} - {{horario.viernesClose}}</b> 
+                                    {% if horario.viernesTurno %} / <b> {{horario.viernesOpen2}} - {{horario.viernesClose2}} </b> {% endif %} 
+                                </div>
                             {% else %}
                                 <div class="col-12 p-0 mt-2">Viernes: <b class="ml-2 text-danger">cerrado</b> </div>
                             {% endif %}
                             <!-- Sábado -->
                             {% if horario.sabado %}
-                                <div class="col-12 p-0 mt-2">Sábado: <b class="ml-2">{{horario.sabadoOpen}} - {{horario.sabadoClose}}</b> </div>
+                                <div class="col-12 p-0 mt-2">
+                                    Sábado: <b class="ml-2">{{horario.sabadoOpen}} - {{horario.sabadoClose}}</b> 
+                                    {% if horario.sabadoTurno %} / <b> {{horario.sabadoOpen2}} - {{horario.sabadoClose2}} </b> {% endif %} 
+                                </div>
                             {% else %}
                                 <div class="col-12 p-0 mt-2">Sábado: <b class="ml-2 text-danger">cerrado</b> </div>
                             {% endif %}
                             <!-- Domingo -->
                             {% if horario.domingo %}
-                                <div class="col-12 p-0 mt-2">Domingo: <b class="ml-2">{{horario.domingoOpen}} - {{horario.domingoClose}}</b> </div>
+                                <div class="col-12 p-0 mt-2">
+                                    Domingo: <b class="ml-2">{{horario.domingoOpen}} - {{horario.domingoClose}}</b>
+                                    {% if horario.domingoTurno %} / <b> {{horario.domingoOpen2}} - {{horario.domingoClose2}} </b> {% endif %} 
+                                </div>
                             {% else %}
                                 <div class="col-12 p-0 mt-2">Domingo: <b class="ml-2 text-danger">cerrado</b> </div>
                             {% endif %}

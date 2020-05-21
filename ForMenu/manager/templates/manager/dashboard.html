@@ -68,7 +68,7 @@
                                         Menús disponibles
                                     </div>   
                                 </div>
-                                {% for menu in menus %}
+                                {% for menu in menus %} 
                                     <div class="col-12 p-0 mt-2 mb-1 bg-light  divMenu shadowHover">
                                         <div class="tituloMenu2 p-3">{{menu.nombre}}</div>
                                         <a class="botonesMenu1 bg-danger" data-toggle="modal" data-target="#eliminar_{{menu.id}}">
@@ -121,10 +121,8 @@
                                 <div class="row m-0 ">
                                     <div class="col-12 p-0  bg-white shadow-sm rounded p-4">
                                         <div class="tituloSecundarioLocal mb-3 pb-3 border-bottom">
-                                            Datos
+                                            Datos públicos
                                         </div> 
-                                        <small class="text-muted">Nombre de usuario</small>
-                                        <input type="text" class="inputLocal mb-3" required name="username" value="{{ user.username }}">
                                         <small class="text-muted">Nombre del local</small>
                                         <input type="text" class="inputLocal mb-3" required name="nombre" value="{{ restaurante.nombre }}">
                                         <small class="text-muted">Teléfono</small>
@@ -169,135 +167,7 @@
                             </div> 
                             <form method="post" action="{% url 'modificarHorario' %}">{% csrf_token %}
                                 <div class="row m-0">
-                                    <!-- lunes -->
-                                    <p class="mb-0 mt-3">Lunes</p> 
-                                    <div class="col-12 p-2 border rounded">
-                                        <div class="radio">
-                                            <input type="radio" value="True" name="lunes" id="siButtonLunes" {% if horario.lunes %} checked {% endif %}>
-                                            <label for="siButtonLunes">SI</label>
-                                            <input type="radio" value="False" name="lunes"  id="noButtonLunes" {% if not horario.lunes %} checked {% endif %}>
-                                            <label for="noButtonLunes">NO</label>
-                                        </div>
-                                        <div class="row mx-0 mt-2">
-                                            <div class="col-6 pr-1 pl-0 ">
-                                                <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="lunesOpen" value="{{ horario.lunesOpen }}">
-                                            </div>
-                                            <div class="col-6 pr-0 pl-1">
-                                                <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="lunesClose" value="{{ horario.lunesClose }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- martes -->
-                                    <p class="mb-0 mt-3">Martes</p> 
-                                    <div class="col-12 p-2 border rounded">
-                                        <div class="radio">
-                                            <input type="radio" value="True" name="martes" id="siButtonMartes" {% if horario.martes %} checked {% endif %}>
-                                            <label for="siButtonMartes">SI</label>
-                                            <input type="radio" value="False" name="martes"  id="noButtonMartes" {% if not horario.martes %} checked {% endif %}>
-                                            <label for="noButtonMartes">NO</label>
-                                        </div>
-                                        <div class="row mx-0 mt-2">
-                                            <div class="col-6 pr-1 pl-0 ">
-                                                <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="martesOpen" value="{{ horario.martesOpen }}">
-                                            </div>
-                                            <div class="col-6 pr-0 pl-1">
-                                                <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="martesClose" value="{{ horario.martesClose }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- miercoles -->
-                                    <p class="mb-0 mt-3">Miércoles</p> 
-                                    <div class="col-12 p-2 border rounded">
-                                        <div class="radio">
-                                            <input type="radio" value="True" name="miercoles" id="siButtonMiercoles" {% if horario.miercoles %} checked {% endif %}>
-                                            <label for="siButtonMiercoles">SI</label>
-                                            <input type="radio" value="False" name="miercoles"  id="noButtonMiercoles" {% if not horario.miercoles %} checked {% endif %}>
-                                            <label for="noButtonMiercoles">NO</label>
-                                        </div>
-                                        <div class="row mx-0 mt-2">
-                                            <div class="col-6 pr-1 pl-0 ">
-                                                <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="miercolesOpen" value="{{ horario.miercolesOpen }}">
-                                            </div>
-                                            <div class="col-6 pr-0 pl-1">
-                                                <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="miercolesClose" value="{{ horario.miercolesClose }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- jueves -->
-                                    <p class="mb-0 mt-3">Jueves</p> 
-                                    <div class="col-12 p-2 border rounded">
-                                        <div class="radio">
-                                            <input type="radio" value="True" name="jueves" id="siButtonJueves" {% if horario.jueves %} checked {% endif %}>
-                                            <label for="siButtonJueves">SI</label>
-                                            <input type="radio" value="False" name="jueves"  id="noButtonJueves" {% if not horario.jueves %} checked {% endif %}>
-                                            <label for="noButtonJueves">NO</label>
-                                        </div>
-                                        <div class="row mx-0 mt-2">
-                                            <div class="col-6 pr-1 pl-0 ">
-                                                <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="juevesOpen" value="{{ horario.juevesOpen }}">
-                                            </div>
-                                            <div class="col-6 pr-0 pl-1">
-                                                <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="juevesClose" value="{{ horario.juevesClose }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- viernes -->
-                                    <p class="mb-0 mt-3">Viernes</p> 
-                                    <div class="col-12 p-2 border rounded">
-                                        <div class="radio">
-                                            <input type="radio" value="True" name="viernes" id="siButtonViernes" {% if horario.viernes %} checked {% endif %}>
-                                            <label for="siButtonViernes">SI</label>
-                                            <input type="radio" value="False" name="viernes"  id="noButtonViernes" {% if not horario.viernes %} checked {% endif %}>
-                                            <label for="noButtonViernes">NO</label>
-                                        </div>
-                                        <div class="row mx-0 mt-2">
-                                            <div class="col-6 pr-1 pl-0 ">
-                                                <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="viernesOpen" value="{{ horario.viernesOpen }}">
-                                            </div>
-                                            <div class="col-6 pr-0 pl-1">
-                                                <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="viernesClose" value="{{ horario.viernesClose }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- sabado -->
-                                    <p class="mb-0 mt-3">Sábado</p> 
-                                    <div class="col-12 p-2 border rounded">
-                                        <div class="radio">
-                                            <input type="radio" value="True" name="sabado" id="siButtonSabado" {% if horario.sabado %} checked {% endif %}>
-                                            <label for="siButtonSabado">SI</label>
-                                            <input type="radio" value="False" name="sabado"  id="noButtonSabado" {% if not horario.sabado %} checked {% endif %}>
-                                            <label for="noButtonSabado">NO</label>
-                                        </div>
-                                        <div class="row mx-0 mt-2">
-                                            <div class="col-6 pr-1 pl-0 ">
-                                                <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="sabadoOpen" value="{{ horario.sabadoOpen }}">
-                                            </div>
-                                            <div class="col-6 pr-0 pl-1">
-                                                <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="sabadoClose" value="{{ horario.sabadoClose }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- domingo -->
-                                    <p class="mb-0 mt-3">Domingo</p> 
-                                    <div class="col-12 p-2 border rounded">
-                                        <div class="radio">
-                                            <input type="radio" value="True" name="domingo" id="siButtonDomingo" {% if horario.domingo %} checked {% endif %}>
-                                            <label for="siButtonDomingo">SI</label>
-                                            <input type="radio" value="False" name="domingo"  id="noButtonDomingo" {% if not horario.domingo %} checked {% endif %}>
-                                            <label for="noButtonDomingo">NO</label>
-                                        </div>
-                                        <div class="row mx-0 mt-2">
-                                            <div class="col-6 pr-1 pl-0 ">
-                                                <input type="text" class="inputLocal border rounded" required placeholder="Apertura" name="domingoOpen" value="{{ horario.domingoOpen }}">
-                                            </div>
-                                            <div class="col-6 pr-0 pl-1">
-                                                <input type="text" class="inputLocal border rounded" required placeholder="Cierre" name="domingoClose" value="{{ horario.domingoClose }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 p-0">
-                                        <button class="btn btn-sm btn-primary py-2 px-3 mt-3 float-right" type="submit" style="border-radius: 25px">Guardar cambios</button>
-                                    </div>
+                                    {% include 'manager/horario.html' %} 
                                 </div>
                             </form>
                         </div>

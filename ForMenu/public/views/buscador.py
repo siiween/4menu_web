@@ -6,8 +6,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 # models
 from manager.models import Restaurante, Menu, Horario
-
-
+from datetime import date
 
 def terminos(request):
     return render(request, 'public/terminos.html')
@@ -76,11 +75,17 @@ def local(request, username):
     restaurante = Restaurante.objects.get(user=user)
     horario = Horario.objects.get(user=user)
     menus = Menu.objects.filter(user=user)
+
+    #Día actual
+    today = date.today()
+
+
     
     context = {
         'restaurante': restaurante,
         'horario': horario,
         'menus': menus,
         'usuario': user,
+        'today':today,
     }
     return render(request, 'public/local.html', context)
