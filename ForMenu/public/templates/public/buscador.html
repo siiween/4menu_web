@@ -37,7 +37,9 @@
                     <div class="col-md-4 p-3">
                         <a href="{% url 'local' restaurante.user.username %}" class="enlace">
                             <div class="busquedaDiv shadow-sm shadowHover">
-                                <div class="imagenBusqueda" style="background:url({{restaurante.imagen.url}}) no-repeat; background-size: cover; background-position: center !important;"></div>
+                                {% if restaurante.imagen%} 
+                                    <div class="imagenBusqueda" style="background:url({{restaurante.imagen.url}}) no-repeat; background-size: cover; background-position: center !important;"></div>
+                                {% endif %}
                                 <div class="cuerpoBusqueda p-3">
                                     <h1>{{restaurante.nombre}}</h1>
                                     <h2 class="mt-1">{{restaurante.ciudad}}, {{restaurante.provincia}} <small>({{restaurante.pais}})</small></h2>
