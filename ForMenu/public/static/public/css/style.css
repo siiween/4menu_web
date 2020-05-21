@@ -54,7 +54,7 @@ select:focus {
     z-index: 900;
     bottom: 10px;
     right: 10px;
-    background-color: #fff;
+    background-color: #f4f7f8;
     font-size: 12px;
     color: #c0c0c0;
     border-radius: 20px;
@@ -70,15 +70,19 @@ select:focus {
     .ordenador {
         display: none
     }
+    
     .botonCondiciones {
-        position: fixed;
+        position: relative;
         z-index: 900;
-        bottom: 5px;
-        right: 5px;
-        background-color: #fff;
-        font-size: 10px;
+        bottom: auto;
+        right: auto;
+        background-color: #f4f7f8;
+        font-size: 12px;
         color: #c0c0c0;
-        border-radius: 2px;
+        border-radius: 20px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        float: right;
     }
 }
 
@@ -145,16 +149,6 @@ COOKIES
 
     .ordenador {
         display: none
-    }
-    .botonCondiciones {
-        position: fixed;
-        z-index: 900;
-        bottom: 5px;
-        right: 5px;
-        background-color: #fff;
-        font-size: 10px;
-        color: #c0c0c0;
-        border-radius: 2px;
     }
 }
 
