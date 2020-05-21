@@ -183,7 +183,7 @@ def password(request):
                     request, f'Tu contraseña ha sido modificada, por favor vuelve a iniciar sesión')
             else:
                 messages.error(
-                    request, f'Las contraseñas no coincides')
+                    request, f'Las contraseñas no coinciden')
         else:
             messages.error(
                     request, f'La contraseña anterior es incorrecta')
