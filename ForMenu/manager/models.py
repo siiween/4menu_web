@@ -159,8 +159,6 @@ class Horario(models.Model):
 
 
 class Menu(models.Model):
-    id = models.UUIDField(_("ID"), primary_key=True,
-                           default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=200)
     qr = models.ImageField(upload_to='QR')
