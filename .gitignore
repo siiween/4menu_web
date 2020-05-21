@@ -87,3 +87,10 @@ local_settings.py
 
 .env
 db.sqlite3
+
+
+
+4menu_web/media/PDF
+4menu_web/media/QR
+4menu_web/media/perfil
+4menu_web/ForMenu/settings.py
