@@ -26,21 +26,25 @@ class Restaurante(models.Model):
     ciudad = models.CharField(
         'Ciudad',
         max_length=50,
+        default='Alicante'
     )
 
     pais = models.CharField(
         'País',
         max_length=50,
+        default='España'
     )
 
     provincia = models.CharField(
         'Provincia',
         max_length=50,
+        default='Alicante'
     )
 
     direccion = models.CharField(
         'Dirección',
         max_length=200,
+        default='Calle España'
     )
 
     imagen = models.ImageField(upload_to='perfil', blank=True, null=True)
