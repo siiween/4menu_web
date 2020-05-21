@@ -20,9 +20,11 @@
 
                             {% if messages %}
                                 {% for message in messages %}
-                                    <div class="alert alert-{{ message.tags }}">
-                                        {{ message }}
-                                    </div>
+                                    <div class="col-md-12 p-0">
+                                        <div class="alert alert-{{ message.tags }}">
+                                            {{ message }}
+                                        </div>
+                                     </div>
                                 {% endfor %}
                             {% endif %}
 

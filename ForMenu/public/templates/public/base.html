@@ -18,6 +18,8 @@
     </head>
     <body>
         {% include 'public/includes/nav.html' %}
+        {% include 'public/includes/cookies.html' %}
+
         <div class="overlay"></div>
         <div class="overlay2" id="overlay2"></div>
         {% block content %}
@@ -25,13 +27,15 @@
         {% if user.is_authenticated %}
             {% include 'public/includes/ayuda.html'%}
             {% include 'manager/crearMenu.html'%}
-            {% if not restaurante.is_complete %}
-                {% include 'manager/completar.html'%}
-            {% endif %}
         {% else %}
             {% include 'public/includes/login.html'%}
             {% include 'public/includes/alta.html'%}
         {% endif %}
+
+        <a href="{% url 'terminos' %}" class="botonCondiciones enlace shadowHover px-md-3 p-2">
+            <span class="ordenador">Términos</span>
+            <span class="movil"><span class="icon-files-empty"></span></span>
+        </a>
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -39,6 +43,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
         <script type="text/javascript" src="{% static 'public/js/nav.js' %}"></script>
+        <script type="text/javascript" src="{% static 'public/js/cookies.js' %}"></script>
         <script type="text/javascript" src="{% static 'manager/js/custom-file-input.js'%}"></script>
     </body>
 </html>

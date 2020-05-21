@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Manager de 4Menu
+    Manager de {{ restaurante.nombre}}
 {% endblock %}
 
 {% block content %} 
@@ -11,6 +11,10 @@
         background-color: #f4f7f8
     }
 </style>
+
+    {% if not restaurante.is_complete %}
+        {% include 'manager/completar.html'%}
+    {% endif %}
 
    	<div style="width: 100%; margin-top: 70px">
         {% if restaurante.imagen%} 

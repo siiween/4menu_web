@@ -21,7 +21,7 @@ def dashboard(request):
     context = {
         'restaurante': restaurante,
         'horario': horario,
-        'menus':menus,
+        'menus': menus,
     }
 
     return render(request, 'manager/dashboard.html', context)
@@ -29,20 +29,23 @@ def dashboard(request):
 
 @login_required
 def crearMenu(request):
-    if request.method == 'POST': 
+    if request.method == 'POST':
         form = menuForm(request.POST, request.FILES)
         if form.is_valid():
             menu = form.save(commit=False)
             menu.user = request.user
             # generamos el slugname
-            menu.slug_name = unidecode(request.POST['nombre']).lower().replace(' ', '_')
+            menu.slug_name = unidecode(
+                request.POST['nombre']).lower().replace(' ', '_')
             menu.save()
             # generamos el QR
-            img = qrcode.make('https://4menu.es/media/' + str(menu.pdf))
-            img.save('media/QR/' + menu.user.username + '_' + menu.slug_name + '.png')
+            img = qrcode.make('https://www.4menu.es/media/' + str(menu.pdf))
+            img.save(settings.MEDIA_ROOT + '/QR/' +
+                     menu.user.username + '_' + menu.slug_name + '.png')
             menu.qr = 'QR/' + menu.user.username + '_' + menu.slug_name + '.png'
             menu.save()
-            messages.success(request, f'¡Enhorabuena! Tu menú ha sido creado correctamente')
+            messages.success(
+                request, f'¡Enhorabuena! Tu menú ha sido creado correctamente')
         else:
             messages.error(
                 request, f'Ha habido un error, prueba de nuevo')
@@ -53,7 +56,7 @@ def crearMenu(request):
 @login_required
 def eliminarMenu(request, id):
     menu = Menu.objects.get(id=id)
-    
+
     if request.user == menu.user:
         if menu.delete():
             messages.success(request, f'Menú eliminado correctamente')
@@ -87,12 +90,12 @@ def modificarDatosPublicos(request):
         if u_form.is_valid() and r_form.is_valid():
             u_form.save()
             r_form.save()
-            messages.success(request, f'¡Tus datos públicos han sido actualizado!')
+            messages.success(
+                request, f'¡Tus datos públicos han sido actualizado!')
         else:
             messages.error(
                 request, f'Ha habido un error, prueba de nuevo')
     return redirect('dashboard-manager')
-
 
 
 
@@ -111,8 +114,6 @@ def modificarDireccion(request):
     return redirect('dashboard-manager')
 
 
-
-
 @login_required
 def modificarHorario(request):
     if request.method == 'POST':
@@ -127,7 +128,6 @@ def modificarHorario(request):
             messages.error(
                 request, f'Ha habido un error, prueba de nuevo')
     return redirect('dashboard-manager')
-
 
 
 @login_required

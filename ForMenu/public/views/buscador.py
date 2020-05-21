@@ -8,6 +8,13 @@ from django.db.models import Q
 from manager.models import Restaurante, Menu, Horario
 
 
+
+def terminos(request):
+    return render(request, 'public/terminos.html')
+
+
+
+
 def inicio(request):
     if request.user.is_authenticated:
         return redirect('dashboard-manager')

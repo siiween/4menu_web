@@ -49,7 +49,20 @@ select:focus {
     border-color: #f5c6cb;
 }
 
+.botonCondiciones{
+    position: fixed;
+    z-index: 900;
+    bottom: 10px;
+    right: 10px;
+    background-color: #fff;
+    font-size: 12px;
+    color: #c0c0c0;
+    border-radius: 20px;
+}
+
+
 @media (max-width: 767px) {
+
     .movil {
         display: block
     }
@@ -57,7 +70,95 @@ select:focus {
     .ordenador {
         display: none
     }
+    .botonCondiciones {
+        position: fixed;
+        z-index: 900;
+        bottom: 5px;
+        right: 5px;
+        background-color: #fff;
+        font-size: 10px;
+        color: #c0c0c0;
+        border-radius: 2px;
+    }
 }
+
+
+
+/*********++++++++++++++++
+COOKIES 
+*************************/
+
+
+.cookiesms {
+    background-color: #fff;
+    padding: 24px;
+    width: 350px;
+    color: #424242;
+    bottom: 20px;
+    left: 20px;
+    border-radius: 4px;
+    position: fixed;
+    background-color: #fff;
+    z-index: 998;
+    text-align: left;
+    font-size: 12px;
+    -webkit-box-shadow: 0 0 12px #999;
+    box-shadow: 0 0 12px #999;
+    font-weight: 300;
+    color: #747474
+}
+
+.cookiesms h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #424242;
+}
+
+.overlayCookie {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: calc(100vh);
+    top: 0px;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    opacity: 1;
+    transition: 1s;
+}
+
+
+@media (max-width: 767px) {
+
+    .cookiesms {
+        width: calc(100% - 20px);
+        bottom: 10px;
+        left: 10px;
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    .movil {
+        display: block
+    }
+
+    .ordenador {
+        display: none
+    }
+    .botonCondiciones {
+        position: fixed;
+        z-index: 900;
+        bottom: 5px;
+        right: 5px;
+        background-color: #fff;
+        font-size: 10px;
+        color: #c0c0c0;
+        border-radius: 2px;
+    }
+}
+
+
 
 
 /*********++++++++++++++++

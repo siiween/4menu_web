@@ -2,7 +2,15 @@
 {% load static %}
 
 {% block title %}
-    Buscar {{nombre}} {% if ciudad %} en {{ciudad}} {% endif %}
+    {% if ciudad and nombre %} 
+        Buscar {{nombre}} en {{ciudad}} 
+    {% elif not ciudad and nombre %}
+        Buscar {{nombre}}
+    {% elif  ciudad and not nombre %}
+        Buscar en {{ciudad}}
+    {% else %}
+        Deberías poner algún término de busqueda
+    {% endif %}
 {% endblock %}
 
 
