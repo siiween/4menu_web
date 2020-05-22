@@ -45,11 +45,16 @@ $(document).ready(function () {
         $('#crearMenuDiv, .overlay2').removeClass('active');
         $('html').css('overflow-y', 'scroll');
     });
- });
+});
 
 
+setTimeout(function () {
+    $(".desaparecer5").addClass('active');
+}, 3000);
 
-
+setTimeout(function () {
+    $(".desaparecer10").addClass('active');
+}, 15000);
 
 /*
 función que lee la url de un input type file y la coloca
@@ -70,7 +75,7 @@ function readURL(input) {
 
 
 
-
+ 
 
 /*
 esto activa la función de arriba cuando detecta que el input 

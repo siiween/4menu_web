@@ -61,8 +61,29 @@ select:focus {
 }
 
 
+
+.desaparecer10.active,
+.desaparecer5.active{
+    display: none;
+}
+
 @media (max-width: 767px) {
 
+
+    .desaparecer5 {
+        position: fixed;
+        bottom: 15px;
+        left: 15px;
+        margin: 0;
+        display: block;
+        width: calc(100% - 30px)!important;
+        z-index: 990;
+    }
+    .desaparecer5.active{
+        left: -100vw;
+        display: block;
+        transition: .5s;
+      }
     .movil {
         display: block
     }

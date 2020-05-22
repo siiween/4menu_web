@@ -116,7 +116,7 @@ def modificarDatosPublicos(request):
             e_form.save()
             r_form.save()
             messages.success(
-                request, f'¡Tus datos públicos han sido actualizado!')
+                request, f'¡Tus datos públicos han sido actualizados!')
         else:
             messages.error(
                 request, f'Ha habido un error, prueba de nuevo')

@@ -21,7 +21,7 @@
             <div class="portadaLocal" id="bluh"  style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.7) 100%), url({{restaurante.imagen.url}}) no-repeat;background-size: cover; background-position: center !important;">
         {% else %}
             <div class="portadaLocal" id="bluh"  style="background: #424242"> 
-            <div class="alert alert-warning alertaImagen mb-0" role="alert">
+            <div class="alert alert-warning alertaImagen shadow-sm mb-0" role="alert">
                 😭 Vaya, al parecer no tienes una imagen de perfil, deberías subir una para que tus clientes te reconozcan mejor.
             </div>            
         {% endif %}
@@ -46,11 +46,11 @@
 
 		<div class="contenedor px-3 pb-5">
             <div class="row m-0">
-                <div class="col-12 p-0">
+                <div class="col-12 p-0 desaparecer5">
                     {% if restaurante.is_complete %}
                         {% if messages %}
                             {% for message in messages %}
-                                <div class="alert mb-0 mt-4 alert-{{ message.tags }}">
+                                <div class="alert shadow-sm mb-0 mt-4 alert-{{ message.tags }}">
                                     {{ message }}
                                 </div>
                             {% endfor %}
@@ -61,7 +61,7 @@
 
                 <div class="col-md-8 p-0 pr-md-4">
                     <div class="row m-0 ">
-                        <div class="col-12 p-0 mt-4" id="cookie2">
+                        <div class="col-12 p-0 mt-4 desaparecer10" id="cookie2">
                             <div class="alert mb-0 alert-primary shadow-sm">
                                 <p class="mb-0 pr-1">
                                     ¡Hola! Si modificas tu menú el QR no 
