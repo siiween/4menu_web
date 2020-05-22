@@ -8,7 +8,6 @@ import uuid
 
 
 class Restaurante(models.Model):
-    id = models.UUIDField(_("ID"), primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nombre = models.CharField( 'restaurant name', max_length=200,)
     telefono = models.CharField( max_length=17, blank=True, )
@@ -38,7 +37,6 @@ class Restaurante(models.Model):
 
 
 class Horario(models.Model):
-    id = models.UUIDField(_("ID"), primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     lunes = models.BooleanField(default=True)
