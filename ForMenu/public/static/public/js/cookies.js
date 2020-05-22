@@ -16,15 +16,3 @@ function controlcookies() {
 
 
 
-if (localStorage.cookieRecomendacion > 0) {
-    document.getElementById('cookie2').style.display = 'none';
-} else {
-    $('html').css('overflow-y', 'hidden');
-    document.getElementById('cookie2').style.display = 'block';
-}
-
-function controlcookies2() {
-    localStorage.cookieRecomendacion = (localStorage.cookieRecomendacion || 0);
-    localStorage.cookieRecomendacion++;
-    cookie2.style.display = 'none';
-}
