@@ -90,10 +90,6 @@ select:focus {
 /*********++++++++++++++++
 COOKIES 
 *************************/
-#cookie2{
-    display: none;
-}
-
 .cookiesms {
     background-color: #fff;
     padding: 24px;
