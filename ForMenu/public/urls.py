@@ -13,5 +13,5 @@ urlpatterns = [
     path('', views.inicio, name='inicio'),
     path('buscar/', views.buscador, name='buscar'),
     path('@<str:username>/', views.local, name='local'),
-    path('descargar/<uuid:id>/', views.descargar, name='descargar'),
+    path('descargar/<str:id>/', views.descargar, name='descargar'),
 ]
