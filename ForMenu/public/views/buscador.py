@@ -75,17 +75,18 @@ def local(request, username):
     restaurante = Restaurante.objects.get(user=user)
     horario = Horario.objects.get(user=user)
     menus = Menu.objects.filter(user=user)
-
-    #Día actual
-    today = date.today()
-
-
     
     context = {
         'restaurante': restaurante,
         'horario': horario,
         'menus': menus,
         'usuario': user,
-        'today':today,
     }
     return render(request, 'public/local.html', context)
+
+
+
+
+def descargar(request, id):
+    pdf = Menu.objects.get(id = id)
+    return redirect(pdf.pdf.url)

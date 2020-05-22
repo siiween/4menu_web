@@ -17,7 +17,7 @@
     {% endif %}
 
    	<div style="width: 100%; margin-top: 70px">
-        {% if restaurante.imagen%} 
+        {% if restaurante.imagen %} 
             <div class="portadaLocal" id="bluh"  style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.7) 100%), url({{restaurante.imagen.url}}) no-repeat;background-size: cover; background-position: center !important;">
         {% else %}
             <div class="portadaLocal" id="bluh"  style="background: #424242"> 
@@ -26,21 +26,21 @@
             </div>            
         {% endif %}
                 
-        <form method="post" enctype="multipart/form-data" action="{% url 'modificarImagen' %}">{% csrf_token %}
-            <div class="contenedor p-3">
-                <p class="tituloLocal">
-                    {{restaurante.nombre}}
-                </p>
-                <label class="inputCambiarFondo">
-                    <input  type="file" name="imagen" required accept="image/*" class="clearablefileinput shadowHover" id="id_imagen" value="{% if restaurante.imagen%} {{restaurante.imagen}} {% endif %} ">
-                    <a class="btn btn-primary mr-2 shadowHover" role="button" href="#">
-                        <span class="icon-camera"></span>
-                    </a>
-                </label>
-                <button class="btn btn-primary botonNuevaImagen shadow py-2 px-3" type="submit">Guardar cambios</button>
-            </div>
-        </form>
-        </div> 
+                <form method="post" enctype="multipart/form-data" action="{% url 'modificarImagen' %}">{% csrf_token %}
+                    <div class="contenedor p-3">
+                        <p class="tituloLocal">
+                            {{restaurante.nombre}}
+                        </p>
+                        <label class="inputCambiarFondo">
+                            <input  type="file" name="imagen" required accept="image/*" class="clearablefileinput shadowHover" id="id_imagen" value="{% if restaurante.imagen%} {{restaurante.imagen}} {% endif %} ">
+                            <a class="btn btn-primary mr-2 shadowHover" role="button" href="#">
+                                <span class="icon-camera"></span>
+                            </a>
+                        </label>
+                        <button class="btn btn-primary botonNuevaImagen shadow py-2 px-3" type="submit">Guardar cambios</button>
+                    </div>
+                </form>
+            </div> 
 
 
 
@@ -61,6 +61,17 @@
 
                 <div class="col-md-8 p-0 pr-md-4">
                     <div class="row m-0 ">
+                        <div class="col-12 p-0 mt-4" id="cookie2">
+                            <div class="alert mb-0 alert-primary shadow-sm pl-3 pr-2 pb-3 pt-2">
+                                <p class="text-right mb-0" style="font-size: 10px">
+                                    <span class="icon-cross" id="closeCrearMenu" onclick="controlcookies2()"></span>
+                                </p>
+                                <p class="mb-0 pr-1">
+                                    ¡Hola! Si modificas tu menú el QR no 
+                                    cambiará y <u>no necesitarás imprimirlo de nuevo.</u> 😎
+                                </p>
+                            </div>
+                        </div>
                         <div class="col-12 bg-white shadow-sm rounded p-md-4 p-3 mt-4">
                             <div class="row m-0">
                                 <div class="col-12 px-0 mb-3 border-bottom pb-3">
@@ -68,56 +79,7 @@
                                         Menús disponibles
                                     </div>   
                                 </div>
-                                {% for menu in menus %} 
-                                    <div class="col-12 p-0 mt-2 mb-1 bg-light  divMenu shadowHover">
-                                        <div class="tituloMenu2 p-3">{{menu.nombre}}</div>
-                                        <a class="botonesMenu1 bg-danger" data-toggle="modal" data-target="#eliminar_{{menu.id}}">
-                                            <span class="icon-bin2"></span>
-                                        </a>
-                                        <a class="botonesMenu1 bg-primary" data-toggle="modal" data-target="#qrcode_{{menu.id}}">
-                                            <span class="icon-qrcode"></span>
-                                        </a>
-                                        <a class="botonesMenu1 enlace" href="{{menu.pdf.url}}" download="">
-                                            <span class="icon-cloud-download"></span>
-                                        </a>
-                                    </div> 
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="eliminar_{{menu.id}}" tabindex="-1" role="dialog" aria-labelledby="eliminar_{{menu.id}}" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content p-5">  
-                                                    <div class="row m-0">
-                                                        <div class="col-12 p-0 text-center">
-                                                            ¿Estás seguro de eliminar este menú?
-                                                        </div>
-                                                        <div class="col-12 p-0 text-center mt-3">
-                                                            <button type="button" class="btn btn-sm btn-success" data-dismiss="modal" aria-label="Close">
-                                                                Cancelar
-                                                            </button>
-                                                            <a role="button" href="{% url 'eliminarMenu' menu.id %}" class="btn btn-sm btn-danger">
-                                                                Eliminar
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="qrcode_{{menu.id}}" tabindex="-1" role="dialog" aria-labelledby="eliminar_{{menu.id}}" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content p-md-5 p-4">
-                                                <img src="{{menu.qr.url}}" alt="Código QR" class="w-100">
-                                                <a class="btn btn-sm px-3 py-3 btn-primary text-white shadowHover" href="{{menu.qr.url}}" download="" role="button" style="border-radius:30px">
-                                                    Descargar
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% empty %}
-                                    <div class="col-md-6 offset-md-3 p-0 text-center">
-                                        <p> ¿A qué esperas?, sube tu menú y compartelo con los códigos QR. Luchemos contra el COVID-19</p>
-                                        <img src="{% static 'public/img/espera.png'%}" alt="No seas vagooo" class="w-100">
-                                    </div>
-                                {% endfor %}
+                                {% include 'manager/menu.html' %}
 
 
                                 <div class="col-12 p-0 mt-3 pt-3 border-top text-center">

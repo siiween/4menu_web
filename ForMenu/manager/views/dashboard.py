@@ -37,22 +37,43 @@ def crearMenu(request):
             menu = form.save(commit=False)
             menu.user = request.user
             # generamos el slugname
-            menu.slug_name = unidecode(
-                request.POST['nombre']).lower().replace(' ', '_')
+            menu.slug_name = unidecode(request.POST['nombre']).lower().replace(' ', '_')
             menu.save()
             # generamos el QR
-            img = qrcode.make('https://www.4menu.es/media/' + str(menu.pdf))
-            img.save(settings.MEDIA_ROOT + '/QR/' +
-                     menu.user.username + '_' + menu.slug_name + '.png')
-            menu.qr = 'QR/' + menu.user.username + '_' + menu.slug_name + '.png'
+            img = qrcode.make('https://www.4menu.es/descargar/' + str(menu.id))
+            img.save(settings.MEDIA_ROOT + '/QR/' + menu.user.username + '_' + str(menu.id) + '.png')
+            # lo asignamos
+            menu.qr = 'QR/' + menu.user.username + '_' + str(menu.id) + '.png'
             menu.save()
-            messages.success(
-                request, f'¡Enhorabuena! Tu menú ha sido creado correctamente')
+            messages.success(request, f'¡Enhorabuena! Tu menú ha sido creado correctamente')
         else:
-            messages.error(
-                request, f'Ha habido un error, prueba de nuevo')
+            messages.error(request, f'Ha habido un error, prueba de nuevo')
+    return redirect('dashboard-manager')
+
+
+
+
+@login_required
+def modificarMenu(request, id):
+    menu = Menu.objects.get(id=id)
+
+    if request.user == menu.user:
+        if request.method == 'POST':
+            form = menuForm(request.POST, request.FILES, instance=menu)
+            if form.is_valid():
+                menu = form.save()
+                menu.save()
+                messages.success(request, f'¡Enhorabuena! Tu menú ha sido modificado correctamente')
+        else:
+            messages.error(request, f'Ha habido un error, prueba de nuevo')
+    else:
+        messages.error(request, f'No puedes modificar menús que no son tuyos')
 
     return redirect('dashboard-manager')
+
+
+
+
 
 
 @login_required
@@ -69,6 +90,8 @@ def eliminarMenu(request, id):
         messages.error(request, f'No puedes eliminar menús que no son tuyos')
 
     return redirect('dashboard-manager')
+
+
 
 
 @login_required
@@ -188,3 +211,5 @@ def password(request):
             messages.error(
                     request, f'La contraseña anterior es incorrecta')
     return redirect('dashboard-manager')
+
+

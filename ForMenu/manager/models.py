@@ -8,74 +8,21 @@ import uuid
 
 
 class Restaurante(models.Model):
-
+    id = models.UUIDField(_("ID"), primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-
-    nombre = models.CharField(
-        'restaurant name',
-        max_length=200,
-    )
-
-
-    telefono = models.CharField(
-        max_length=17,
-        blank=True,
-    )
-
-    ciudad = models.CharField(
-        'Ciudad',
-        max_length=50,
-        default='Alicante'
-    )
-
-    pais = models.CharField(
-        'País',
-        max_length=50,
-        default='España'
-    )
-
-    provincia = models.CharField(
-        'Provincia',
-        max_length=50,
-        default='Alicante'
-    )
-
-    direccion = models.CharField(
-        'Dirección',
-        max_length=200,
-        default='Calle España'
-    )
-
+    nombre = models.CharField( 'restaurant name', max_length=200,)
+    telefono = models.CharField( max_length=17, blank=True, )
+    ciudad = models.CharField('Ciudad',max_length=50,default='Alicante')
+    pais = models.CharField('País',max_length=50,default='España')
+    provincia = models.CharField('Provincia',max_length=50,default='Alicante')
+    direccion = models.CharField( 'Dirección', max_length=200, default='Calle España')
     imagen = models.ImageField(upload_to='perfil', blank=True, null=True)
-    
-
-    is_active = models.BooleanField(
-        'active',
-        default=True
-    )
-
-    is_complete = models.BooleanField(
-        'complete restaurant',
-        default=False
-    )
-
-    created = models.DateTimeField(
-        'created at',
-        auto_now_add=True,
-        help_text='Date time on which the object was created'
-    )
-
-    modified = models.DateTimeField(
-        'Modified at',
-        auto_now=True,
-        help_text='Date time on which the object was last modified'
-    )
-
+    is_active = models.BooleanField('active',default=True)
+    is_complete = models.BooleanField('complete restaurant',default=False)
+    created = models.DateTimeField('created at',auto_now_add=True,help_text='Date time on which the object was created')
+    modified = models.DateTimeField('Modified at',auto_now=True,help_text='Date time on which the object was last modified')
 
     def save(self, force_insert=False, force_update=False, using=None):
-            # cuando se guarde una nueva entrada del model le
-            # reducimos el tamaño a la imagen
         super().save()
         if self.imagen:
             img = Image.open(self.imagen.path)
@@ -91,6 +38,7 @@ class Restaurante(models.Model):
 
 
 class Horario(models.Model):
+    id = models.UUIDField(_("ID"), primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     lunes = models.BooleanField(default=True)
@@ -142,18 +90,8 @@ class Horario(models.Model):
     domingoOpen2 = models.CharField(max_length=5, default="15:00")
     domingoClose2 = models.CharField(max_length=5, default="20:00")
 
-
-    created = models.DateTimeField(
-        'created at',
-        auto_now_add=True,
-        help_text='Date time on which the object was created'
-    )
-
-    modified = models.DateTimeField(
-        'Modified at',
-        auto_now=True,
-        help_text='Date time on which the object was last modified'
-    )
+    created = models.DateTimeField( 'created at', auto_now_add=True, help_text='Date time on which the object was created')
+    modified = models.DateTimeField('Modified at',auto_now=True,help_text='Date time on which the object was last modified')
 
     def __str__(self):
         return self.user.username
@@ -163,21 +101,12 @@ class Horario(models.Model):
 
 
 class Menu(models.Model):
+    id = models.UUIDField(_("ID"), primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=200)
     qr = models.ImageField(upload_to='QR')
     pdf = models.FileField(upload_to='PDF')
-    created = models.DateTimeField(
-        'created at',
-        auto_now_add=True,
-        help_text='Date time on which the object was created'
-    )
-
-    modified = models.DateTimeField(
-        'Modified at',
-        auto_now=True,
-        help_text='Date time on which the object was last modified'
-    )
-
+    created = models.DateTimeField('created at',auto_now_add=True,help_text='Date time on which the object was created')
+    modified = models.DateTimeField('Modified at',auto_now=True,help_text='Date time on which the object was last modified')
     def __str__(self):
         return self.nombre
