@@ -31,7 +31,7 @@ $(document).ready(function () {
                 var xhr = new window.XMLHttpRequest();
                 xhr.upload.addEventListener('progress', function (e) {
                     if (e.lengthComputable) {
-                        var percent = Math.round((e.loaded / e.total));
+                        var percent = Math.round((e.total / e.loaded) * 100);
                         $('#progressBarFoto').attr('aria-valuenow', percent).css('width', percent + '%')
                     }
                 });
