@@ -1108,6 +1108,16 @@ MANAGER
     display: block;
 }
 
+#progressBarFotoDiv{
+    width: 200px;
+    height: 8px;
+    border-radius: 0;
+    top: 60px;
+    left: 10px;
+    position: absolute;
+    background-color: transparent ;
+}
+
 
 @media (max-width: 767px) {
     .botonNuevaImagen {
@@ -1119,6 +1129,16 @@ MANAGER
     .inputCambiarFondo{
         top: 5px;
         left: 5px;
+    }
+
+    #progressBarFotoDiv {
+        width: 175px;
+        height: 8px;
+        border-radius: 0;
+        top: 55px;
+        left: 10px;
+        position: absolute;
+        background-color: transparent;
     }
 }
 
@@ -1248,4 +1268,19 @@ MANAGER
         height: auto;
         font-size: 12px;
     }
+}
+
+
+
+
+#progressBarModificarMenuDiv,
+#progressBarCrearMenuDiv {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: 8px;
+    width: calc(100% - 10px);
+    z-index: 99;
+    border-radius: 0;
+    background-color: transparent;
 }

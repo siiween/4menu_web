@@ -36,7 +36,7 @@
     <div class="modal fade" id="modificar_{{menu.id}}" tabindex="-1" role="dialog" aria-labelledby="modificar_{{menu.id}}" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content p-md-5 p-4">  
-                <form method="post" enctype="multipart/form-data" action="{% url 'modificarMenu' menu.id %}">{% csrf_token %}
+                <form method="post" enctype="multipart/form-data" id="modificarMenu" action="{% url 'modificarMenu' menu.id %}">{% csrf_token %}
                     <div class="row m-0">
                         <div class="col-12 p-0 pb-3 mb-3 border-bottom">
                             <p class="tituloResultado mb-0 text-center">
@@ -45,6 +45,11 @@
                         </div>
                         <div class="col-12 px-4 pb-4 bg-light shadow-sm">
                             <div class="row m-0">
+                                <!-- progress bar -->
+                                <div class="progress" id="progressBarModificarMenuDiv">
+                                    <div class="progress-bar" id="progressBarModificarMenu" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                 <!-- end  progress bar -->
                                 <div class="col-12 rounded  p-0 mb-2 mb-md-0 text-center">
                                     <div class="box text-center">
                                         <input type="file" name="pdf" id="file-6"  class="inputfile inputfile-5"/>
