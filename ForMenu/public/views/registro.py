@@ -27,7 +27,7 @@ def singup(request):
                     messages.success(request, f'Registro realizado')
                     return redirect('login')
                 else:
-                    messages.error(request, f'Ha avido un error, por favor consulta tu contraseña o tus')
+                    messages.error(request, f'Por favor modifica tu contraseña, ya que no es segura')
                     form = UserForm()
                 
         else:
