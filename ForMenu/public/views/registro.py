@@ -8,7 +8,12 @@ from manager.models import Restaurante, Horario
 from public.forms import UserForm
 
 
+
+
+
 def singup(request):
+    # función que nos permite registrar correctamente un restaurante
+    # comprobamos existencia de usuarios y seguridad de contraseña
     if request.user.is_authenticated:
         return redirect('dashboard-manager')
 

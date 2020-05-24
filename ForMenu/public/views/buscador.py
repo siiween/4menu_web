@@ -8,13 +8,20 @@ from django.db.models import Q
 from manager.models import Restaurante, Menu, Horario
 from datetime import date
 
+
+
+
+
 def terminos(request):
+    # muestra los terminos y condiciones de servicio
     return render(request, 'public/terminos.html')
 
 
 
 
+
 def inicio(request):
+    # muestra la página de inicio con el buscador
     if request.user.is_authenticated:
         return redirect('dashboard-manager')
     return render(request, 'public/inicio.html')
@@ -22,7 +29,12 @@ def inicio(request):
 
 
 
+
 def buscador(request):
+    # motor de busqueda en el que un usuario puede buscar de tres formas
+    # por ciudad
+    # por nombre
+    # por nombre y ciudad a la vez
     if request.user.is_authenticated:
             return redirect('dashboard-manager')
     nombre = request.GET.get('n')
@@ -68,6 +80,7 @@ def buscador(request):
 
 
 def local(request, username):
+    # muestra todos los datos de un restaurante y sus menús disponibles
     if request.user.is_authenticated:
             return redirect('dashboard-manager')
 
@@ -87,6 +100,12 @@ def local(request, username):
 
 
 
+
 def descargar(request, id):
+    # función que nos redirige a la url actual del fichero que contiene
+    # el menú.
+    # Al hacerlo mediante un QR que almacena el id unico del menúy y no el enlace
+    # del archivo podemos redirigirlo a donde nosotros queramos y así podemos modificar
+    # los datos del menú mientras su ID sea fijo
     pdf = Menu.objects.get(id = id)
     return redirect(pdf.pdf.url)

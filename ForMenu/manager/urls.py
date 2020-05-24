@@ -6,7 +6,6 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    # dashboard
     path('', views.dashboard, name='dashboard-manager'),
     path('crear/menu/', views.crearMenu, name='crearMenu'),
     path('completar/perfil/', views.completarPerfil, name='completarPerfil'),
