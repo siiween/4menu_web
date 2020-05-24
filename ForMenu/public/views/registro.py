@@ -16,15 +16,20 @@ def singup(request):
         form = UserForm(request.POST)
 
         if request.POST['password1'] == request.POST['password2']:
-            if form.is_valid():
-                user = form.save()
-                Restaurante.objects.create(user=user, nombre=request.POST['nombre'], telefono=request.POST['telefono'])
-                Horario.objects.create(user=user)
-                messages.success(request, f'Registro realizado')
-                return redirect('login')
+            if User.objects.filter(username=request.POST['username']).exists():
+                messages.error(
+                    request, f'Nombre de usuario en uso')
             else:
-                messages.error(request, f'Nombre de usuario en uso')
-                form = UserForm()
+                if form.is_valid():
+                    user = form.save()
+                    Restaurante.objects.create(user=user, nombre=request.POST['nombre'], telefono=request.POST['telefono'])
+                    Horario.objects.create(user=user)
+                    messages.success(request, f'Registro realizado')
+                    return redirect('login')
+                else:
+                    messages.error(request, f'Ha avido un error, por favor consulta tu contraseña o tus')
+                    form = UserForm()
+                
         else:
             messages.error(request, f'Las contraseñas no coinciden')
             form = UserForm()
