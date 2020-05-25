@@ -21,6 +21,9 @@ from unidecode import unidecode
 def dashboard(request):
     # pantalla principal donde se muestra todo lo que puede hacer un
     # cliente registrado
+    if request.user.is_superuser:
+        return redirect('/admin')
+
     restaurante = Restaurante.objects.get(user=request.user)
     horario = Horario.objects.get(user=request.user)
     menus = Menu.objects.filter(user=request.user)
