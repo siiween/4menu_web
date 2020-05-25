@@ -13,7 +13,7 @@ $(document).ready(function () {
                         console.log('Total Size: ' + e.total);
                         console.log('Percentage Uploaded: ' + (e.loaded / e.total));
                         var percent = Math.round((e.loaded / e.total) * 100);
-                        $('#progressBarCrearMenu').attr('aria-valuenow', percent).css('width', percent + '%')
+                        $('#progressBarCrearMenu').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%')
                     }
                 });
                 return xhr;
@@ -42,7 +42,7 @@ $(document).ready(function () {
                         console.log('Total Size: ' + e.total);
                         console.log('Percentage Uploaded: ' + (e.loaded / e.total));
                         var percent = Math.round((e.loaded / e.total) * 100);
-                        $('#progressBarModificarMenu').attr('aria-valuenow', percent).css('width', percent + '%')
+                        $('#progressBarModificarMenu').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%')
                     }
                 });
                 return xhr;
@@ -74,7 +74,7 @@ $(document).ready(function () {
                        console.log('Total Size: ' + e.total);
                        console.log('Percentage Uploaded: ' + (e.loaded / e.total));
                        var percent = Math.round((e.loaded / e.total) * 100);
-                       $('#progressBarFoto').attr('aria-valuenow', percent).css('width', percent + '%')
+                       $('#progressBarFoto').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%')
                    }
                });
                return xhr;
