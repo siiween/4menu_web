@@ -1,0 +1,40 @@
+{% extends "public/base.html" %}
+{% load static %}
+
+{% block title %}
+   Contactar con 4Menu
+{% endblock %}
+
+
+{% block content %}
+
+    <style>
+    .overlayCookie{
+        display: none!important
+    }
+    html{
+        overflow-y: scroll!important
+    }
+    </style>
+
+
+   	<div style="width: 100%; margin-top: 70px">
+		<div class="contenedor p-md-5 p-3">
+			<div class="row m-0">
+                <div class="col-md-8 offset-md-2 px-0">
+                    <h2 class="mb-5 pb-3 border-bottom">Contacta con nosotros</h2>
+                </div>
+                <div class="col-md-8 offset-md-2 px-0">
+
+                    <h4 class="mb-2">Teléfono</h4> 
+                    <h5 class="mb-5"><a href="tel:+34 622 759 791">+34 622 759 791</a></h5> 
+
+                    <h4 class="mb-2">Correo electrónico</h4> 
+                    <h5 class="mb-4"><a href="mailto:4menu@yonosoy.es">4menu@yonosoy.es</a></h5> 
+
+
+                </div>
+            </div>
+        </div>
+	</div>
+{% endblock %}

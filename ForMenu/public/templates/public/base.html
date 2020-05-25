@@ -46,9 +46,15 @@
             {% include 'public/includes/alta.html'%}
         {% endif %}
 
-        <a href="{% url 'terminos' %}" class="botonCondiciones enlace border shadowHover px-md-3 p-2">
-            Términos
-        </a>
+        <div class="botonCondiciones">
+            <a href="{% url 'contacto' %}" class="enlace border shadowHover px-md-3 p-2">
+                Contacto
+            </a>
+            <a href="{% url 'terminos' %}" class="enlace border shadowHover px-md-3 p-2 ml-1  ml-md-1">
+                Términos
+            </a>
+        </div>
+
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

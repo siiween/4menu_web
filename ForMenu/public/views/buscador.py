@@ -12,6 +12,15 @@ from datetime import date
 
 
 
+def contacto(request):
+    # muestra la pagina de contacto
+    return render(request, 'public/contacto.html')
+
+
+
+
+
+
 def terminos(request):
     # muestra los terminos y condiciones de servicio
     return render(request, 'public/terminos.html')
