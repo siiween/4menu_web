@@ -52,10 +52,6 @@ setTimeout(function () {
     $(".desaparecer5").addClass('active');
 }, 3000);
 
-setTimeout(function () {
-    $(".desaparecer10").addClass('active');
-}, 15000);
-
 /*
 función que lee la url de un input type file y la coloca
 como fondo de un div para poder ser previsualizada 

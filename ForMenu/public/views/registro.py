@@ -27,10 +27,17 @@ def singup(request):
             else:
                 if form.is_valid():
                     user = form.save()
-                    Restaurante.objects.create(user=user, nombre=request.POST['nombre'], telefono=request.POST['telefono'])
-                    Horario.objects.create(user=user)
-                    messages.success(request, f'Registro realizado')
-                    return redirect('login')
+                    # comprobamos si se crea el restaurante y el horario para el usuario y si no es así
+                    # lo eliminamos para evitar fallos
+                    try:
+                        Restaurante.objects.create(user=user, nombre=request.POST['nombre'], telefono=request.POST['telefono'])
+                        Horario.objects.create(user=user)
+                        messages.success(request, f'Registro realizado')
+                        return redirect('login')
+                    except:
+                        user.delete()
+                        messages.error(request, f'Ha habido un error, por favor intentelo de nuevo')
+                        form = UserForm()
                 else:
                     messages.error(request, f'Por favor modifica tu contraseña, ya que no es segura')
                     form = UserForm()

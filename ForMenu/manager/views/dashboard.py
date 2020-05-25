@@ -42,16 +42,21 @@ def crearMenu(request):
     if request.method == 'POST':
         form = menuForm(request.POST, request.FILES)
         if form.is_valid():
-            menu = form.save(commit=False)
-            menu.user = request.user
-            menu.save()
-            # generamos el QR una vez el pdf esté guardado para que no de errores
-            img = qrcode.make('https://www.4menu.es/descargar/' + str(menu.id))
-            img.save(settings.MEDIA_ROOT + '/QR/' + menu.user.username + '_' + str(menu.id) + '.png')
-            # lo asignamos al menú que acabamos de crear antes
-            menu.qr = 'QR/' + menu.user.username + '_' + str(menu.id) + '.png'
-            menu.save()
-            messages.success(request, f'¡Enhorabuena! Tu menú ha sido creado correctamente')
+            try:
+                menu = form.save(commit=False)
+                menu.user = request.user
+                menu.save()
+                # generamos el QR una vez el pdf esté guardado para que no de errores
+                img = qrcode.make('https://www.4menu.es/descargar/' + str(menu.id))
+                img.save(settings.MEDIA_ROOT + '/QR/' + menu.user.username + '_' + str(menu.id) + '.png')
+                # lo asignamos al menú que acabamos de crear antes
+                menu.qr = 'QR/' + menu.user.username + '_' + str(menu.id) + '.png'
+                menu.save()
+                messages.success(request, f'¡Enhorabuena! Tu menú ha sido creado correctamente')
+            except:
+                # no se ha logrado crear el qr por lo que eliminamos todo para que no de fallo
+                menu.delete()
+                messages.error(request, f'Ha habido un error, prueba de nuevo')
         else:
             messages.error(request, f'Ha habido un error, prueba de nuevo')
     return redirect('dashboard-manager')
