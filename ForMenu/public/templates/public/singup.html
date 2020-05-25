@@ -26,27 +26,49 @@
                                         </div>
                                     {% endfor %}
                                 {% endif %}
+                                {% if form.username.errors %}
+                                    <div class="alert alert-error">
+                                        {{form.username.errors}}
+                                    </div>
+                                {% endif %}
+                                {% if form.email.errors %}
+                                    <div class="alert alert-error">
+                                        {{form.email.errors}}
+                                    </div>
+                                {% endif %}
+                                {% if form.password1.errors %}
+                                    <div class="alert alert-error">
+                                        {{form.password1.errors}}
+                                    </div>
+                                {% endif %}
+                                 {% if form.password2.errors %}
+                                    <div class="alert alert-error">
+                                        {{form.password2.errors}}
+                                    </div>
+                                {% endif %}
                             </div>
 
+                
                             <div class="col-md-6 rounded pr-md-3 p-0 mb-3">
                                 <label for="username" class="mb-0">Nombre de usuario</label>
-                                <input type="text" required name="username"class="form-control" >
+                                <input type="text" required name="username"value="{%if form.username.value%} {{form.username.value}} {%endif%}" class="form-control" >
                             </div>
                             <div class="col-md-6 rounded pl-md-3 p-0 mb-3">
                                 <label for="nombre" class="mb-0">Nombre del Establecimiento</label>
-                                <input type="text" required name="nombre"class="form-control">
+                                <input type="text" required name="nombre"class="form-control" value="{{nombre}}" >
                             </div>
                             <div class="col-md-6 rounded pr-md-3 p-0 mb-3">
                                 <label for="telefono" class="mb-0">Teléfono</label>
-                                <input type="number" required name="telefono"class="form-control">
+                                <input type="number" required name="telefono" value="{{telefono}}" class="form-control">
                             </div>
                             <div class="col-md-6 rounded pl-md-3 p-0 mb-3">
                                 <label for="email" class="mb-0">Email</label>
-                                <input type="Email" required name="email"class="form-control">
+                                <input type="Email" required name="email"class="form-control" value="{%if form.email.value%} {{form.email.value}} {%endif%}">
                             </div>
                             <div class="col-md-6 rounded pr-md-3 p-0 mb-3">
+                                {{form.password1.errors}}
                                 <label for="password1" class="mb-0">Contraseña</label>
-                                <input type="password" required name="password1" class="form-control">
+                                <input type="password" required name="password1" class="form-control" value="{%if form.password1.value%} {{form.password1.value}} {%endif%}">
                             </div>
                             <div class="col-md-6 rounded pl-md-3 p-0 mb-3">
                                 <label for="password2" class="mb-0">Contraseña (confirmación)</label>
@@ -63,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
             </form>
 		</div>
 	</div>

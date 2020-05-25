@@ -19,34 +19,27 @@ def singup(request):
 
     if request.method == 'POST':
         form = UserForm(request.POST)
+        nombre = request.POST['nombre']
+        telefono = request.POST['telefono']
 
-        if request.POST['password1'] == request.POST['password2']:
-            if User.objects.filter(username=request.POST['username']).exists():
-                messages.error(
-                    request, f'Nombre de usuario en uso')
-            else:
-                if form.is_valid():
-                    user = form.save()
-                    # comprobamos si se crea el restaurante y el horario para el usuario y si no es así
-                    # lo eliminamos para evitar fallos
-                    try:
-                        Restaurante.objects.create(user=user, nombre=request.POST['nombre'], telefono=request.POST['telefono'])
-                        Horario.objects.create(user=user)
-                        messages.success(request, f'Registro realizado')
-                        return redirect('login')
-                    except:
-                        user.delete()
-                        messages.error(request, f'Ha habido un error, por favor intentelo de nuevo')
-                        form = UserForm()
-                else:
-                    messages.error(
-                        request,
-                        f'La contraseña debe contener al menos 8 caracteres, no ser demasiado común y no ser completamente numérica.'
-                    )
-                    form = UserForm()
-                
-        else:
-            messages.error(request, f'Las contraseñas no coinciden')
-            form = UserForm()
+        if form.is_valid():
+            user = form.save()
+            Restaurante.objects.create(user=user, nombre=nombre, telefono=telefono)
+            Horario.objects.create(user=user)
+            messages.success(request, f'Registro realizado')
+            return redirect('login')
+    else:
+        form = UserForm()
+        nombre = ''
+        telefono = ''
+
+    context = {
+        'form': form,
+        'nombre' : nombre,
+        'telefono': telefono,
+    }
+        #else:
+            #messages.error(request, f'Las contraseñas no coinciden')
+            #form = UserForm()
         
-    return render(request, 'public/singup.html')
+    return render(request, 'public/singup.html', context)

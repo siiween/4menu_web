@@ -749,6 +749,12 @@ LOCAL
 ALTA
 *************************/
 
+.errorlist{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+}
 
 
 .registro h1 {
