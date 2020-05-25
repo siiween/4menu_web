@@ -39,7 +39,10 @@ def singup(request):
                         messages.error(request, f'Ha habido un error, por favor intentelo de nuevo')
                         form = UserForm()
                 else:
-                    messages.error(request, f'Por favor modifica tu contraseña, ya que no es segura')
+                    messages.error(
+                        request,
+                        f'La contraseña debe contener al menos 8 caracteres, no ser demasiado común y no ser completamente numérica.'
+                    )
                     form = UserForm()
                 
         else:
