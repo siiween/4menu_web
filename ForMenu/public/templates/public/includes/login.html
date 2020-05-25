@@ -9,10 +9,12 @@
                 </p>
             </div>
             <div class="col-md-4 rounded  p-0 mb-2 mb-md-0 ">
-                <input type="text" name="username" required placeholder="Nombre de usuario" class="form-control py-3 h-100">
+                <label for="username" hidden >Username</label>
+                <input type="text" name="username" required placeholder="Nombre de usuario" id="username" class="form-control py-3 h-100">
             </div>
-             <div class="col-md-5 rounded px-0 px-md-3 mb-2 mb-md-0">
-                <input type="password" name="password" required placeholder="Contraseña" class="form-control py-3 h-100" >
+            <div class="col-md-5 rounded px-0 px-md-3 mb-2 mb-md-0">
+                <label for="password" hidden >Contraseña</label>
+                <input type="password" name="password" required placeholder="Contraseña" id="password" class="form-control py-3 h-100" >
             </div>
             <div class="col-md-3 rounded p-0">
                 <button class="btn btn-sm btn-block btn-primary py-3">Iniciar sesión</button>
