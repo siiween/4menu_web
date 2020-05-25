@@ -55,7 +55,7 @@ def crearMenu(request):
                 # lo asignamos al menú que acabamos de crear antes
                 menu.qr = 'QR/' + menu.user.username + '_' + str(menu.id) + '.png'
                 menu.save()
-                messages.success(request, f'¡Enhorabuena! Tu menú ha sido creado correctamente')
+                messages.success(request, f'¡Enhorabuena JOSE! Tu menú ha sido creado correctamente')
             except:
                 # no se ha logrado crear el qr por lo que eliminamos todo para que no de fallo
                 menu.delete()
