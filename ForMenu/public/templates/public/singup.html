@@ -50,7 +50,10 @@
 
                 
                             <div class="col-md-6 rounded pr-md-3 p-0 mb-3">
-                                <label for="username" class="mb-0">Nombre de usuario <br><small>(No se permiten espacios ni caracteres especiales)</small></label>
+                                <label for="username" class="mb-0">
+                                    Nombre de usuario
+                                    <small style="font-size: 10px" class="mb-0">(No se permiten espacios)</small>
+                                </label>
                                 <input type="text" required name="username"value="{%if form.username.value%} {{form.username.value}} {%endif%}" class="form-control" >
                             </div>
                             <div class="col-md-6 rounded pl-md-3 p-0 mb-3">
